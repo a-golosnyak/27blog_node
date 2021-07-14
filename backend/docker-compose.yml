@@ -1,0 +1,39 @@
+version: "3"
+services:
+  web:
+    build:
+      dockerfile: Dockerfile
+      context: .
+#      target: dev
+#    volumes:
+#      - .:/app:delegated
+    ports:
+      - "3000:3000"
+    environment:
+      MONGO_CONNECTION_STRING: mongodb://db:27017
+
+#  web:
+#    image: node:alpine
+#    healthcheck:
+#      test: curl -f http://127.0.0.1
+#    environment:
+#      MONGO_CONNECTION_STRING: mongodb://db:27017
+
+  db:
+    image: mongo:3
+    ports:
+        - "27017:27017"
+#  mongo:
+#    image: mongo
+#    healthcheck:
+#      test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
+
+#  mongo:
+#    image: "mongo:4.2"
+#    ports:
+#      - "27017:27017"
+#    networks:
+#      ia_net:
+#        ipv4_address: 172.22.0.12
+#    environment:
+#      TZ: "UTC"
