@@ -1,6 +1,7 @@
 version: "3"
 services:
   web:
+    container_name: web
     build:
       dockerfile: Dockerfile
       context: .
@@ -10,8 +11,18 @@ services:
     ports:
       - "3000:3000"
     environment:
-      MONGO_CONNECTION_STRING: mongodb://db:27017
+      MONGO_CONNECTION_STRING: mongodb://mongo:27017
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    restart: always
 
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+        - "27017:27017"
 #  web:
 #    image: node:alpine
 #    healthcheck:
@@ -19,10 +30,7 @@ services:
 #    environment:
 #      MONGO_CONNECTION_STRING: mongodb://db:27017
 
-  db:
-    image: mongo:3
-    ports:
-        - "27017:27017"
+
 #  mongo:
 #    image: mongo
 #    healthcheck:
