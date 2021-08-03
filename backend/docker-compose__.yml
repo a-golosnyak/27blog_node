@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  ace-api-gateway:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    image: "ace-api-gateway"
+    container_name: "ace-api-gateway"
+    ports:
+      - '3050:3050'
+    links:
+      - "mongo"
+    depends_on:
+      - "mongo"
+    restart: always
+    environment:
+      TZ: "UTC"
+      NODE_ENV: "local"
+      PORT: "3010"
+      ENCRYPT_KEY: ""
+      DB_MIGRATIONS: "true"
+      RUN_CRONS: 'false'
+      MAILER_USER: ${MAILER_USER}
+      MAILER_PWD: ${MAILER_PWD}
+      ANALYTICS_API_KEY: ${ANALYTICS_API_KEY}
+      GOOGLE_PAY_ISSUER_ID: ${GOOGLE_PAY_ISSUER_ID}
+    volumes:
+      - "../src:/ace-api-gateway/src"
+      - '~/.ssh/api-crm-data-management-dev.key:/root/.ssh/api-crm-data-management.key:ro'
+      - '../googlePayCredentials.json:/ace-api-gateway/googlePayCredentials.json:ro'
+
+  mongo:
+    image: "mongo:4.2"
+    container_name: "mongo"
+    ports:
+      - "27017:27017"
+#    volumes:
+#      - "/data/db:/data/db"
+    environment:
+      TZ: "UTC"

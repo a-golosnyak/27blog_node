@@ -1,7 +1,7 @@
 {
   "name": "api-design-v3",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "bla.js",
   "author": "Andrii Golosniak",
   "license": "MIT",
   "scripts": {
@@ -11,9 +11,13 @@
     "test-models": "yarn test -t model",
     "test-controllers": "yarn test -t controllers",
     "test-auth": "yarn test -t Authentication:",
-    "dev": "nodemon --exec npm restart",
+    "dev_": "nodemon --exec npm restart",
+    "dev__": "nodemon --exec npm run develop",
+    "dev": "nodemon --legacy-watch bla.js",
+    "dev____": "nodemon --legacy-watch dist/index.js",
     "restart": "rimraf dist && npm run build && npm start",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "develop": "node bla.js"
   },
   "dependencies": {
     "bcrypt": "^3.0.8",

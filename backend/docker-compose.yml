@@ -2,27 +2,38 @@ version: "3"
 services:
   web:
     container_name: web
-    build:
-      dockerfile: Dockerfile
-      context: .
+    build: .
+#    build:
+#      dockerfile: Dockerfile
+#      context: .
+    ports:
+      - "3000:3000"
 #      target: dev
 #    volumes:
 #      - .:/app:delegated
-    ports:
-      - "3000:3000"
-    environment:
-      MONGO_CONNECTION_STRING: mongodb://mongo:27017
-    links:
-      - mongo
-    depends_on:
-      - mongo
-    restart: always
+#    volumes:
+#      - ./:/home/node/code
+#    volumes:
+#      - /d/Project/NodeJs/Workspace/27blog_node_react/backend:/home/node/code/
+#    volumes:
+#      - "./:/home/node/code/"
+#      - node_modules:/home/node/code/node_modules
 
-  mongo:
-    container_name: mongo
-    image: mongo
-    ports:
-        - "27017:27017"
+#    environment:
+#      COMPOSE_CONVERT_WINDOWS_PATHS: 1
+#    environment:
+#      MONGO_CONNECTION_STRING: mongodb://mongo:27017
+#    links:
+#      - mongo
+#    depends_on:
+#      - mongo
+#    restart: always
+
+#  mongo:
+#    container_name: mongo
+#    image: mongo
+#    ports:
+#        - "27017:27017"
 #  web:
 #    image: node:alpine
 #    healthcheck:

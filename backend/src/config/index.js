@@ -1,5 +1,8 @@
 import { merge } from 'lodash'
-const env = process.env.NODE_ENV || 'development'
+const env = process.env.NODE_ENV || 'development';
+
+// console.log('___________________________________ Here _______________________________________');
+// console.log(process.env.NODE_ENV);
 
 const baseConfig = {
   env,
