@@ -5,7 +5,7 @@ RUN npm i -g nodemon
 #USER node
 
 #VOLUME .:/home/node/code/
-VOLUME /d/Project/NodeJs/Workspace/27blog_node_react/backend:/home/node/code/
+#VOLUME /d/Project/NodeJs/Workspace/27blog_node_react/backend:/home/node/code
 #ADD     app /nodeapp
 #WORKDIR /nodeapp
 

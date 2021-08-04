@@ -3,14 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="40d4a4ed-fe01-4119-8785-d8aa681f4bc5" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/bla.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/bla.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/config/dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/config/dev.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/config/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/server_.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/server.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,8 +21,8 @@
       <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="34" column="32" lean-forward="true" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+            <state relative-caret-position="126">
+              <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="77" />
             </state>
           </provider>
         </entry>
@@ -33,8 +30,8 @@
       <file leaf-file-name="docker-compose.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/docker-compose.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="21" selection-start-line="21" selection-start-column="1" selection-end-line="22" selection-end-column="39" />
+            <state relative-caret-position="450">
+              <caret line="25" column="16" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -43,25 +40,7 @@
         <entry file="file://$PROJECT_DIR$/backend/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/src/config/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/src/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="32" selection-start-column="32" selection-end-column="32" />
+              <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -87,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/src/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="180">
+              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -99,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bla.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/bla.js">
+      <file leaf-file-name="bla.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/backend/src/bla.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state>
+              <caret column="38" selection-start-column="38" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -151,13 +130,13 @@
         <option value="$PROJECT_DIR$/backend/src/index.js" />
         <option value="$PROJECT_DIR$/backend/dist/index.js" />
         <option value="$PROJECT_DIR$/backend/src/config/index.js" />
-        <option value="$PROJECT_DIR$/backend/src/bla.js" />
         <option value="$PROJECT_DIR$/backend/src/server_.js" />
-        <option value="$PROJECT_DIR$/backend/package.json" />
-        <option value="$PROJECT_DIR$/backend/docker-compose.yml" />
         <option value="$PROJECT_DIR$/backend/Dockerfile" />
         <option value="$PROJECT_DIR$/backend/bla.js" />
         <option value="$PROJECT_DIR$/backend/src/server.js" />
+        <option value="$PROJECT_DIR$/backend/package.json" />
+        <option value="$PROJECT_DIR$/backend/docker-compose.yml" />
+        <option value="$PROJECT_DIR$/backend/src/bla.js" />
       </list>
     </option>
   </component>
@@ -225,14 +204,15 @@
     <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Project\NodeJs\Workspace\27blog_node_react\backend\src" />
+      <recent name="D:\Project\NodeJs\Workspace\27blog_node_react\backend" />
+      <recent name="D:\Project\NodeJs\Workspace\27 blog_node_react\backend" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Project\NodeJs\Workspace\27blog_node_react\backend\src" />
       <recent name="D:\Project\NodeJs\Workspace\27blog_node_react\backend" />
       <recent name="D:\Project\NodeJs\Workspace\27blog_node_react" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Project\NodeJs\Workspace\27blog_node_react\backend" />
-      <recent name="D:\Project\NodeJs\Workspace\27 blog_node_react\backend" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -264,12 +244,12 @@
       <workItem from="1626290433953" duration="3208000" />
       <workItem from="1627243265646" duration="6786000" />
       <workItem from="1627328029497" duration="51875000" />
-      <workItem from="1627963175950" duration="1985000" />
+      <workItem from="1627963175950" duration="4265000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89283000" />
+    <option name="totallyTimeSpent" value="91563000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="234" y="0" width="1686" height="1040" extended-state="0" />
@@ -278,16 +258,16 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15568863" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50104165" side_tool="true" weight="0.3373232" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50104165" side_tool="true" weight="0.3373232" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49895832" visible="true" weight="0.3200443" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49895832" visible="true" weight="0.3200443" />
+      <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="TypeScript" order="8" />
+      <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -554,13 +534,6 @@
     <entry file="file://$PROJECT_DIR$/backend/.dockerignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="32" selection-start-column="32" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/dist/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -585,41 +558,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/package.json">
+    <entry file="file://$PROJECT_DIR$/backend/src/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+        <state relative-caret-position="180">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/docker-compose.yml">
+    <entry file="file://$PROJECT_DIR$/backend/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" selection-start-line="21" selection-start-column="1" selection-end-line="22" selection-end-column="39" />
+        <state>
+          <caret column="32" selection-start-column="32" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="34" column="32" lean-forward="true" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+        <state relative-caret-position="126">
+          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="77" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/bla.js">
+    <entry file="file://$PROJECT_DIR$/backend/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="450">
+          <caret line="25" column="16" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/server.js">
+    <entry file="file://$PROJECT_DIR$/backend/src/bla.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
+        <state>
+          <caret column="38" selection-start-column="38" selection-end-column="38" />
         </state>
       </provider>
     </entry>

@@ -2,19 +2,17 @@ version: "3"
 services:
   web:
     container_name: web
-    build: .
-#    build:
-#      dockerfile: Dockerfile
-#      context: .
+#    build: .
+    build:
+      dockerfile: Dockerfile
+      context: .
     ports:
       - "3000:3000"
-#      target: dev
+
 #    volumes:
-#      - .:/app:delegated
-#    volumes:
-#      - ./:/home/node/code
-#    volumes:
-#      - /d/Project/NodeJs/Workspace/27blog_node_react/backend:/home/node/code/
+#      - /d/Project/NodeJs/Workspace/27blog_node_react/backend:/home/node/code
+    volumes:
+      - .:/home/node/code
 #    volumes:
 #      - "./:/home/node/code/"
 #      - node_modules:/home/node/code/node_modules
