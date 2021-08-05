@@ -27,7 +27,6 @@ app.get('/', async (req, res) => {
 app.post('/signup', signup)
 app.post('/signin', signin)
 
-
 app.use('/api', protect)
 app.use('/api/user', userRouter)
 app.use('/api/item', itemRouter)
@@ -36,19 +35,18 @@ app.use('/api/list', listRouter)
 export const start = async () => {
   try {
     // await connect()
-    console.log('___________________________________ Here 1');
 
     app.listen(config.port, () => {
-      console.log('___________________________________ Here 2');
+      console.log('___________________________________ Here 1');
       // console.log(`REST API on http://localhost:${config.port}/api`)
       console.log(
       `🚀 Server ready at http://localhost:${config.port}}`
     );
 
-      console.log('___________________________________ Here 3');
+      console.log('___________________________________ Here 2');
     })
   } catch (e) {
-    console.log('___________________________________ Here 4');
+    console.log('___________________________________ Here 3');
     console.error(e)
     process.exit(1);
   }

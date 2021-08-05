@@ -1,56 +1,24 @@
 version: "3"
 services:
   web:
-    container_name: web
-#    build: .
+    container_name: node
     build:
       dockerfile: Dockerfile
       context: .
     ports:
       - "3000:3000"
-
-#    volumes:
-#      - /d/Project/NodeJs/Workspace/27blog_node_react/backend:/home/node/code
     volumes:
-      - .:/home/node/code
-#    volumes:
-#      - "./:/home/node/code/"
-#      - node_modules:/home/node/code/node_modules
-
-#    environment:
-#      COMPOSE_CONVERT_WINDOWS_PATHS: 1
-#    environment:
-#      MONGO_CONNECTION_STRING: mongodb://mongo:27017
-#    links:
-#      - mongo
-#    depends_on:
-#      - mongo
+      - ./src:/home/node/code/src
+    environment:
+      MONGO_CONNECTION_STRING: mongodb://mongo:27017
+    links:
+      - mongo
+    depends_on:
+      - mongo
 #    restart: always
 
-#  mongo:
-#    container_name: mongo
-#    image: mongo
-#    ports:
-#        - "27017:27017"
-#  web:
-#    image: node:alpine
-#    healthcheck:
-#      test: curl -f http://127.0.0.1
-#    environment:
-#      MONGO_CONNECTION_STRING: mongodb://db:27017
-
-
-#  mongo:
-#    image: mongo
-#    healthcheck:
-#      test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
-
-#  mongo:
-#    image: "mongo:4.2"
-#    ports:
-#      - "27017:27017"
-#    networks:
-#      ia_net:
-#        ipv4_address: 172.22.0.12
-#    environment:
-#      TZ: "UTC"
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+        - "27017:27017"

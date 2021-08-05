@@ -1,7 +1,7 @@
 {
   "name": "api-design-v3",
   "version": "1.0.0",
-  "main": "bla.js",
+  "main": "index.js",
   "author": "Andrii Golosniak",
   "license": "MIT",
   "scripts": {
