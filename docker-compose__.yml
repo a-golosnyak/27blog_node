@@ -4,8 +4,8 @@ services:
     container_name: web
 #    build: .
     build:
-      dockerfile: Dockerfile
-      context: .
+      dockerfile: backend/Dockerfile
+      context: ""
     ports:
       - "3000:3000"
 

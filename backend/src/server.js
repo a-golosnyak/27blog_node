@@ -34,7 +34,7 @@ app.use('/api/list', listRouter)
 
 export const start = async () => {
   try {
-    // await connect()
+    await connect()
 
     app.listen(config.port, () => {
       console.log('___________________________________ Here 1');
