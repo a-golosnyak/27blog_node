@@ -6,7 +6,7 @@ services:
       context: "./backend"
       dockerfile: "Dockerfile"
     ports:
-      - "3000:3000"
+      - "3001:3001"
     volumes:
       - ./backend/src:/home/backend/src
     environment:
@@ -27,7 +27,7 @@ services:
 #        REACT_APP_WEATHER_API_KEY: ${REACT_APP_WEATHER_API_KEY}
 #        REACT_APP_WEATHER_HOST: ${REACT_APP_WEATHER_HOST}
     ports:
-      - "3001:3001"
+      - "3000:3000"
     depends_on:
       - backend
     volumes:
