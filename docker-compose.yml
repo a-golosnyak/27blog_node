@@ -9,6 +9,7 @@ services:
       - "3001:3001"
     volumes:
       - ./backend/src:/home/backend/src
+      - ./backend/database:/home/backend/database
     environment:
       MONGO_CONNECTION_STRING: mongodb://mongo:27018
     links:
@@ -23,8 +24,6 @@ services:
       context: "./frontend"
       dockerfile: "Dockerfile"
 #      args:
-#        REACT_APP_GOOGLE_MAPS_KEY: ${REACT_APP_GOOGLE_MAPS_KEY}
-#        REACT_APP_WEATHER_API_KEY: ${REACT_APP_WEATHER_API_KEY}
 #        REACT_APP_WEATHER_HOST: ${REACT_APP_WEATHER_HOST}
     ports:
       - "3000:3000"
@@ -32,15 +31,16 @@ services:
       - backend
     volumes:
       - ./frontend/src:/home/frontend/src
-#    volumes:
-#      - '../../../analytics-ui/:/analytics-ui'
-#      - '/analytics-ui/node_modules'
-#    networks:
-#      ia_net:
-#        ipv4_address: 172.22.0.9
 
   mongo:
     container_name: mongo_db
     image: mongo
+    env_file:
+      - ./backend/.env
     ports:
         - "27018:27017"
+    volumes:
+      - ./data:/data/db
+
+    command: --quiet
+#    command: mongod --quiet --logpath /dev/null

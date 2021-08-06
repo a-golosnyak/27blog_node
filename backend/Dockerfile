@@ -6,6 +6,9 @@ RUN mkdir /home/backend
 WORKDIR /home/backend
 #COPY --chown=node:node package-lock.json package.json ./
 #COPY --chown=node:node . .
+
+ARG DB_PORT
+
 COPY package-lock.json package.json ./
 RUN npm i
 COPY . .

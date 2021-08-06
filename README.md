@@ -1,9 +1,12 @@
 # API design in Node.js with Express
 > Andrey Golosnyak
 
+## Local development
+
+```
+    docker-compose up --build
+```
+
 
 ### Testing
 THe other resources don't have any test, go ahead and write some!
-
-export class User {...}	            import {User} from ...
-export default class User {...}     import User from ...

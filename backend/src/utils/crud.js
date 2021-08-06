@@ -31,9 +31,16 @@ export const getMany = model => async (req, res) => {
 }
 
 export const createOne = model => async (req, res) => {
+  console.log('Here 1');
   const createdBy = req.user._id
+
   try {
+    console.log('Here 2');
+    console.log(createdBy);
+    console.log(req.body);
     const doc = await model.create({ ...req.body, createdBy })
+
+    console.log('Here 3');
     res.status(201).json({ data: doc })
   } catch (e) {
     console.error(e)
