@@ -1,36 +1,36 @@
 version: "3"
 services:
-  backend:
-    container_name: backend
-    build:
-      context: "./backend"
-      dockerfile: "Dockerfile"
-    ports:
-      - "3001:3001"
-    volumes:
-      - ./backend/src:/home/backend/src
-      - ./backend/database:/home/backend/database
-    environment:
-      MONGO_CONNECTION_STRING: mongodb://mongo:27018
-    links:
-      - mongo
-    depends_on:
-      - mongo
+#  backend:
+#    container_name: backend
+#    build:
+#      context: "./backend"
+#      dockerfile: "Dockerfile"
+#    ports:
+#      - "3001:3001"
+#    volumes:
+#      - ./backend/src:/home/backend/src
+#      - ./backend/database:/home/backend/database
+#    environment:
+#      MONGO_CONNECTION_STRING: mongodb://mongo:27018
+#    links:
+#      - mongo
+#    depends_on:
+#      - mongo
 #    restart: always
 
-  frontend:
-    container_name: frontend
-    build:
-      context: "./frontend"
-      dockerfile: "Dockerfile"
-#      args:
-#        REACT_APP_WEATHER_HOST: ${REACT_APP_WEATHER_HOST}
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
-    volumes:
-      - ./frontend/src:/home/frontend/src
+#  frontend:
+#    container_name: frontend
+#    build:
+#      context: "./frontend"
+#      dockerfile: "Dockerfile"
+##      args:
+##        REACT_APP_WEATHER_HOST: ${REACT_APP_WEATHER_HOST}
+#    ports:
+#      - "3000:3000"
+#    depends_on:
+#      - backend
+#    volumes:
+#      - ./frontend/src:/home/frontend/src
 
   mongo:
     container_name: mongo_db
@@ -39,8 +39,14 @@ services:
       - ./backend/.env
     ports:
         - "27018:27017"
-    volumes:
-      - ./data:/data/db
-
+#    volumes:
+#      - ./data:/data/db
+#    volumes:
+#      - mongodata:/data/db
     command: --quiet
 #    command: mongod --quiet --logpath /dev/null
+#    restart: unless-stopped
+#  volumes:
+#    mongodata:
+#      container_name: mongo_db
+#        image: mongo

@@ -27,6 +27,7 @@ app.get('/', async (req, res) => {
 app.post('/signup', signup)
 app.post('/signin', signin)
 
+
 app.use('/api', protect)
 app.use('/api/user', userRouter)
 app.use('/api/item', itemRouter)
@@ -38,6 +39,7 @@ export const start = async () => {
 
     app.listen(config.port, () => {
       console.log('___________________________________ Here 1');
+      console.log(config);
       // console.log(`REST API on http://localhost:${config.port}/api`)
       console.log(
       `🚀 Server ready at http://localhost:${config.port}}`

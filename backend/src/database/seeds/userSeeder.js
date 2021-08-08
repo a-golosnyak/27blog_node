@@ -1,16 +1,18 @@
-// export const
+import { User } from '../../resources/user/user.model'
 import  faker  from 'faker'
-// let faker = require('faker')
 
-console.log('Here user seeder! -------')
-console.log(faker.name.findName())
-
-let userSeeder = {
-    a: '1',
-    seedData() {
-        console.log('Here seeder 1 ! -------')
+export default class UserSeeder {
+    static async create(params, qty = 1) {
+        let users = [];
+        for (let i=0; i<qty; i++) {
+            let user = await User.create({
+                email: params.email || faker.internet.email(),
+                password: params.password || '111'
+            });
+            users.push(user);
+        }
+        return users;
     }
 }
 
 
-module.exports = userSeeder;
