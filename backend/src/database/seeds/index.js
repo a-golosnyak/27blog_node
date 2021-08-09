@@ -1,4 +1,6 @@
 import userSeeder from './userSeeder.js';
+import listSeeder from './listSeeder.js';
+
 // let seeder = require('./userSeeder')
 import { User } from '../../resources/user/user.model'
 import { List } from '../../resources/list/list.model'
@@ -34,14 +36,21 @@ import {connect} from "../../utils/db";
     //     password: '111'
     // });
 
-    let users = await userSeeder.create({email: 'aaa'}, 2)
+    // let users = await userSeeder.create({}, 1)
+    // console.log(users.map( (i) => i.email))
+    // console.log(users)
 
     // let list = await List.create({
     //     name: faker.hacker.noun() + 's',
     //     status: 'complete',
     //     createdBy: user.id
     // });
-    //
+
+    // let lists = await listSeeder.create({
+    //     createdBy:  users[0]._id
+    // }, 2);
+    let lists = await listSeeder.create({}, 1);
+
     // let item = await Item.create({
     //     name: faker.hacker.noun(),
     //     status: 'complete',
@@ -49,7 +58,8 @@ import {connect} from "../../utils/db";
     //     list: list.id
     // })
 
-    console.log(users.mac( (i) => i.email))
+
+    console.log(lists.map( (i) => i.name))
     process.exit();
 })();
 

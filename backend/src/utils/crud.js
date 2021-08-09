@@ -38,6 +38,7 @@ export const createOne = model => async (req, res) => {
     console.log('Here 2');
     console.log(createdBy);
     console.log(req.body);
+    console.log({ ...req.body, createdBy });
     const doc = await model.create({ ...req.body, createdBy })
 
     console.log('Here 3');
