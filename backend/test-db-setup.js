@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
 import cuid from 'cuid'
 import _ from 'lodash'
-import { Item } from './src/resources/item/item.model'
-import { List } from './src/resources/list/list.model'
-import { User } from './src/resources/user/user.model'
+import { Item } from './src/old/resources/item/item.model'
+import { List } from './src/old/resources/list/list.model'
+import { User } from './src/old/resources/user/user.model'
 
 const models = { User, List, Item }
 

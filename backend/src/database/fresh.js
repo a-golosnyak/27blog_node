@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-import {connect} from "../utils/db";
+import {connect} from "../old/utils/db";
 
 (async() => {
 	await connect();

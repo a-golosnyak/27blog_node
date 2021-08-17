@@ -3,11 +3,11 @@ import { json, urlencoded } from 'body-parser'
 import morgan from 'morgan'
 import config from './config'
 import cors from 'cors'
-import { signup, signin, protect } from './utils/auth'
-import { connect } from './utils/db'
-import userRouter from './resources/user/user.router'
-import itemRouter from './resources/item/item.router'
-import listRouter from './resources/list/list.router'
+import { signup, signin, protect } from './old/utils/auth'
+import { connect } from './old/utils/db'
+import userRouter from './old/resources/user/user.router'
+import itemRouter from './old/resources/item/item.router'
+import listRouter from './old/resources/list/list.router'
 
 export const app = express()
 

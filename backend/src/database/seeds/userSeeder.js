@@ -1,4 +1,4 @@
-import { User } from '../../resources/user/user.model'
+import { User } from '../../old/resources/user/user.model'
 import  faker  from 'faker'
 
 export default class UserSeeder {

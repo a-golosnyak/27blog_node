@@ -2,12 +2,12 @@ import userSeeder from './userSeeder.js';
 import listSeeder from './listSeeder.js';
 
 // let seeder = require('./userSeeder')
-import { User } from '../../resources/user/user.model'
-import { List } from '../../resources/list/list.model'
-import { Item } from '../../resources/item/item.model'
+import { User } from '../../old/resources/user/user.model'
+import { List } from '../../old/resources/list/list.model'
+import { Item } from '../../old/resources/item/item.model'
 import  faker  from 'faker'
 import bcrypt from "bcrypt";
-import {connect} from "../../utils/db";
+import {connect} from "../../old/utils/db";
 
 // console.log('Here common seeder! -------')
 // console.log(faker.commerce.product())

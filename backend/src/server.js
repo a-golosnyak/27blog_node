@@ -3,22 +3,24 @@ import { json, urlencoded } from 'body-parser'
 import morgan from 'morgan'
 import config from './config'
 import cors from 'cors'
-import { signup, signin, protect } from './utils/auth'
+import { protect } from './middleware/auth'
+import { signup, signin } from './middleware/auth'
 import { connect } from './utils/db'
-import userRouter from './resources/user/user.router'
-import itemRouter from './resources/item/item.router'
-import listRouter from './resources/list/list.router'
+import userRouter from './routes/user.router'
+// import itemRouter from './old/resources/item/item.router'
+// import listRouter from './old/resources/list/list.router'
 
-export const app = express()
+export const app = express();
 
-app.disable('x-powered-by')
+app.disable('x-powered-by');
 
-app.use(cors())
-app.use(json())
-app.use(urlencoded({ extended: true }))
+app.use(cors());
+app.use(json());
+app.use(urlencoded({ extended: true }));
 // app.use(morgan('dev'))
 
 // app.get('/', async ctx => (ctx.body = 'Welcome to the contacts API!'))
+
 
 app.get('/', async (req, res) => {
   return res.status(200).send({message: 'Welcome to the contacts API! '})
@@ -27,11 +29,11 @@ app.get('/', async (req, res) => {
 app.post('/signup', signup)
 app.post('/signin', signin)
 
-
-app.use('/api', protect)
-app.use('/api/user', userRouter)
-app.use('/api/item', itemRouter)
-app.use('/api/list', listRouter)
+// app.use('/', authRouter)
+app.use('/api', protect);
+app.use('/api/user', userRouter);
+// app.use('/api/item', itemRouter)
+// app.use('/api/list', listRouter)
 
 export const start = async () => {
   try {
@@ -49,7 +51,7 @@ export const start = async () => {
     })
   } catch (e) {
     console.log('___________________________________ Here 3');
-    console.error(e)
+    console.error(e);
     process.exit(1);
   }
 }

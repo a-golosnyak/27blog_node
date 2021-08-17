@@ -4,5 +4,5 @@ export const config = {
   },
   // dbUrl: 'mongodb://localhost:27017/api-design'
   // dbUrl: 'mongodb://mongo:27018'
-  dbUrl: 'mongodb://localhost:27018/api-design'
+  dbUrl: 'mongodb://localhost:27018'
 }

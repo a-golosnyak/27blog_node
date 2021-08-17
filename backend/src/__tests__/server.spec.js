@@ -1,7 +1,7 @@
 import request from 'supertest'
 import { app } from '../server'
-import { User } from '../resources/user/user.model'
-import { newToken } from '../utils/auth'
+import { User } from '../old/resources/user/user.model'
+import { newToken } from '../old/utils/auth'
 import mongoose from 'mongoose'
 
 describe('API Authentication:', () => {

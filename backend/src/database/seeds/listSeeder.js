@@ -1,4 +1,4 @@
-import { List } from '../../resources/list/list.model'
+import { List } from '../../old/resources/list/list.model'
 import  faker  from 'faker'
 import userSeeder from "./userSeeder";
 
