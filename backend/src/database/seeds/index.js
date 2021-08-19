@@ -6,8 +6,11 @@ import { User } from '../../old/resources/user/user.model'
 import { List } from '../../old/resources/list/list.model'
 import { Item } from '../../old/resources/item/item.model'
 import  faker  from 'faker'
+
 import bcrypt from "bcrypt";
 import {connect} from "../../old/utils/db";
+
+import factory from '../factories/userFactory.js';
 
 // console.log('Here common seeder! -------')
 // console.log(faker.commerce.product())
@@ -39,6 +42,11 @@ import {connect} from "../../old/utils/db";
     // let users = await userSeeder.create({}, 1)
     // console.log(users.map( (i) => i.email))
     // console.log(users)
+    // let users = await userSeeder.create({}, 2)
+
+    let user = factory.make('User', {
+        email: 'aaa@mail.ru'
+    });
 
     // let list = await List.create({
     //     name: faker.hacker.noun() + 's',
@@ -57,7 +65,6 @@ import {connect} from "../../old/utils/db";
     //     createdBy: user.id,
     //     list: list.id
     // })
-
 
     console.log(lists.map( (i) => i.name))
     process.exit();

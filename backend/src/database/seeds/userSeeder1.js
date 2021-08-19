@@ -1,9 +1,9 @@
 // export const
-import  faker  from 'faker'
+// import  faker  from 'faker'
 // let faker = require('faker')
 
 console.log('Here user seeder! -------')
-console.log(faker.name.findName())
+// console.log(faker.name.findName())
 
 let userSeeder1 = {
     a: '1',

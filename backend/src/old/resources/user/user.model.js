@@ -63,4 +63,10 @@ userSchema.methods.checkPassword = function(password) {
   })
 }
 
+userSchema.methods.debugeee = function(password) {
+  console.log('Here into model XXX ---------------------------')
+}
+// userSchema.properties.aaa = 'Aaaa';
+
+
 export const User = mongoose.model('user', userSchema)
