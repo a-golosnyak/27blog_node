@@ -7,8 +7,8 @@ const roleScheme = new mongoose.Schema(
 			required: true,
       trim: true,
 		},
-
-});
+	},
+);
 
 roleScheme.index({ name: 1 }, { unique: true });
 

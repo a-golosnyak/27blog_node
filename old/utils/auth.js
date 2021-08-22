@@ -1,4 +1,4 @@
-import config from '../../config'
+import config from '../../backend/src/config/index'
 import { User } from '../resources/user/user.model'
 import jwt from 'jsonwebtoken'
 
