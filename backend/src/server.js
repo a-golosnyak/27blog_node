@@ -32,12 +32,13 @@ app.post('/signin', signin)
 // app.use('/', authRouter)
 app.use('/api', protect);
 app.use('/api/user', userRouter);
+
 // app.use('/api/item', itemRouter)
 // app.use('/api/list', listRouter)
 
 export const start = async () => {
   try {
-    await connect()
+    // await connect();
 
     app.listen(config.port, () => {
       console.log('___________________________________ Here 1');

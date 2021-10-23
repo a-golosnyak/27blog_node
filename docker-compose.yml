@@ -1,22 +1,22 @@
 version: "3"
 services:
-#  backend:
-#    container_name: backend
-#    build:
-#      context: "./backend"
-#      dockerfile: "Dockerfile"
-#    ports:
-#      - "3001:3001"
-#    volumes:
-#      - ./backend/src:/home/backend/src
-#      - ./backend/database:/home/backend/database
-#    environment:
-#      MONGO_CONNECTION_STRING: mongodb://mongo:27018
-#    links:
-#      - mongo
-#    depends_on:
-#      - mongo
-#    restart: always
+  backend:
+    container_name: backend
+    build:
+      context: "./backend"
+      dockerfile: "Dockerfile"
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./backend/src:/home/backend/src
+      - ./backend/database:/home/backend/database
+    environment:
+      MONGO_CONNECTION_STRING: mongodb://mongo:27018
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    restart: always
 
 #  frontend:
 #    container_name: frontend
