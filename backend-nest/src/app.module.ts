@@ -1,17 +1,28 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-// import { ItemController } from "./controllers/api/item.controller";
 import { MongooseModule } from '@nestjs/mongoose';
-import {ItemService} from "./services/item.service";
 import {ItemModule} from "./models/item.module";
+import {ConfigModule} from "@nestjs/config";
+import {UserModule} from "./users/user.module";
+import { RolesController } from './roles/roles.controller';
+import { RolesModule } from './roles/roles.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [
-      MongooseModule.forRoot('mongodb://localhost:27018/api-design-nest'),
-      ItemModule
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+    imports: [
+        ConfigModule.forRoot({
+            envFilePath: '.env'
+        }),
+        MongooseModule.forRoot(
+        `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB_NAME}`
+        ),
+        ItemModule,
+        UserModule,
+        RolesModule,
+        AuthModule
+    ],
+    controllers: [AppController],
+    providers: [AppService],
 })
 export class AppModule {}
