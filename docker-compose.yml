@@ -32,6 +32,21 @@ services:
 #    volumes:
 #      - ./frontend/src:/home/frontend/src
 
+  frontend-vue:
+    container_name: frontend-vue
+    build:
+      context: "./frontend-vue"
+      dockerfile: "Dockerfile"
+#      args:
+#        REACT_APP_WEATHER_HOST: ${REACT_APP_WEATHER_HOST}
+    ports:
+      - "4000:4000"
+      - "8080:8080"
+#    depends_on:
+#      - backend
+    volumes:
+      - ./frontend-vue/src:/home/frontend/src
+
   mongo:
     container_name: mongo_db
     image: mongo

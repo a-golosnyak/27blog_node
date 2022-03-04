@@ -1,4 +1,4 @@
-import { User } from '../../old/resources/user/user.model'
+import { User } from '../../models/user.model'
 import  faker  from 'faker'
 
 export default class UserSeeder {
@@ -6,8 +6,9 @@ export default class UserSeeder {
         let users = [];
         for (let i=0; i<qty; i++) {
             let user = await User.create({
-                email: params.hasOwnProperty('email') || faker.internet.email(),
-                password: params.hasOwnProperty('password') || '111'
+                email: params.hasOwnProperty('email') ? params.email : faker.internet.email(),
+                password: params.hasOwnProperty('password') ? params.password : '111',
+                role: params.hasOwnProperty('role') ? params.role : '111',
             });
             users.push(user);
         }
