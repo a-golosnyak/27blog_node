@@ -1,11 +1,33 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
+// import PostShow from "@/views/Posts/PostShow";
+// import About from "../views/About";
 
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Pages/Login.vue"),
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Pages/Register.vue"),
+  },
+  {
+    path: "/posts/:id",
+    name: "posts.show",
+    props: true,
+    // component: PostShow,
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Posts/PostShow.vue"),
   },
   {
     path: "/about",

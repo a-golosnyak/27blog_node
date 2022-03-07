@@ -41,7 +41,6 @@ services:
 #        REACT_APP_WEATHER_HOST: ${REACT_APP_WEATHER_HOST}
     ports:
       - "4000:4000"
-      - "8080:8080"
 #    depends_on:
 #      - backend
     volumes:
@@ -58,8 +57,8 @@ services:
 #      - ./data:/data/db
 #    volumes:
 #      - mongodata:/data/db
-    command: --quiet
-#    command: mongod --quiet --logpath /dev/null
+#    command: --quiet
+    command: mongod --quiet --logpath /dev/null
 #    restart: unless-stopped
 #  volumes:
 #    mongodata:
