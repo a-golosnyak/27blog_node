@@ -6,7 +6,7 @@ services:
 #      context: "./backend"
 #      dockerfile: "Dockerfile"
 #    ports:
-#      - "3001:3001"
+#      - "3000:3000"
 #    volumes:
 #      - ./backend/src:/home/backend/src
 #      - ./backend/database:/home/backend/database

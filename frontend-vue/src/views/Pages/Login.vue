@@ -9,6 +9,8 @@
       <span> Password </span>
       <input name="password" class="ml-1" v-model="password" type="password" />
     </div>
+    <span>Remember me</span>
+    <input class="ml-1" type="checkbox" :checked="remember"/>
     <div class="button-wrapper">
       <button @click="onLogin">Login</button>
     </div>
@@ -23,13 +25,15 @@ export default {
   data: () => ({
     email: "",
     password: "",
+    remember: "",
   }),
   methods: {
     onLogin() {
       window.axios
-        .post("/api/login", {
+        .post("/login", {
           email: this.email,
           password: this.password,
+          remember: this.remember,
         })
         .then(({ data }) => {
           console.log("Login successful ", data);
