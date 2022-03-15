@@ -1,5 +1,25 @@
-version: "3"
+version: "3.9"
 services:
+  mongo:
+    container_name: mongo
+    image: mongo
+#    env_file:
+#      - ./backend/.env
+    ports:
+      - "27017:27017"
+  #        =============================
+  #    volumes:
+  #      - ./data:/data/db
+  #    volumes:
+  #      - mongodata:/data/db
+  #    command: --quiet
+  #    command: mongod --quiet --logpath /dev/null
+  #    restart: unless-stopped
+  #  volumes:
+  #    mongodata:
+  #      container_name: mongo_db
+  #        image: mongo
+
 #  backend:
 #    container_name: backend
 #    build:
@@ -17,6 +37,26 @@ services:
 #    depends_on:
 #      - mongo
 #    restart: always
+  backend-ts:
+    container_name: backend-ts
+    build:
+      context: "./backend-ts"
+      dockerfile: "Dockerfile"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend-ts/src:/home/backend-ts/src
+      - ./backend-ts/database:/home/backend-ts/database
+    env_file:
+      - ./backend/.env
+    environment:
+#      APP_PORT: '${APP_PORT}'
+      MONGO_CONNECTION_STRING: '${MONGO_CONNECTION_STRING}'
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    restart: always
 
 #  frontend:
 #    container_name: frontend
@@ -32,35 +72,18 @@ services:
 #    volumes:
 #      - ./frontend/src:/home/frontend/src
 
-  frontend-vue:
-    container_name: frontend-vue
-    build:
-      context: "./frontend-vue"
-      dockerfile: "Dockerfile"
-#      args:
-#        REACT_APP_WEATHER_HOST: ${REACT_APP_WEATHER_HOST}
-    ports:
-      - "4000:4000"
-#    depends_on:
-#      - backend
-    volumes:
-      - ./frontend-vue/src:/home/frontend/src
+#  frontend-vue:
+#    container_name: frontend-vue
+#    build:
+#      context: "./frontend-vue"
+#      dockerfile: "Dockerfile"
+##      args:
+##        REACT_APP_WEATHER_HOST: ${REACT_APP_WEATHER_HOST}
+#    ports:
+#      - "4000:4000"
+##    depends_on:
+##      - backend
+#    volumes:
+#      - ./frontend-vue/src:/home/frontend/src
+#
 
-  mongo:
-    container_name: mongo_db
-    image: mongo
-    env_file:
-      - ./backend/.env
-    ports:
-        - "27018:27017"
-#    volumes:
-#      - ./data:/data/db
-#    volumes:
-#      - mongodata:/data/db
-#    command: --quiet
-    command: mongod --quiet --logpath /dev/null
-#    restart: unless-stopped
-#  volumes:
-#    mongodata:
-#      container_name: mongo_db
-#        image: mongo

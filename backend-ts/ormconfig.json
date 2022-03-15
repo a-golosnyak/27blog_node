@@ -1,0 +1,25 @@
+{
+   "type": "mongodb",
+   "database": "api-design",
+   "synchronize": true,
+   "url": "mongodb://localhost:27017/api-design",
+   "host": "localhost",
+   "port": "27017",
+   "logging": false,
+   "useUnifiedTopology": true,
+   "connectTimeout": 5000,
+   "entities": [
+      "src/database/models/*.ts"
+   ],
+   "migrations": [
+      "src/database/migration/*.ts"
+   ],
+   "subscribers": [
+      "src/database/subscriber/*.ts"
+   ],
+   "cli": {
+      "entitiesDir": "src/database/models",
+      "migrationsDir": "src/database/migration",
+      "subscribersDir": "src/database/subscriber"
+   }
+}

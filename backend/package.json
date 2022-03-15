@@ -12,6 +12,7 @@
     "test-controllers": "yarn test -t controllers",
     "test-auth": "yarn test -t Authentication:",
     "dev": "nodemon --exec npm restart",
+    "dev__": "nodemon --exec npm restart",
     "dev_": "nodemon --legacy-watch src/bla.js",
     "restart": "rimraf dist && npm run build && npm start",
     "start": "node dist/index.js",
