@@ -1,4 +1,4 @@
-import faker from 'faker';
+import faker from '@faker-js/faker';
 
 export default class Factory {
   constructor(fakerInstance = null) {
@@ -9,9 +9,6 @@ export default class Factory {
 
   define(name, callback) {
     this._factories[name] = callback;
-
-    // console.log(name)
-    // console.log(callback.toString())
 
     return this;
   }
@@ -26,7 +23,7 @@ export default class Factory {
     return this;
   }
 
-  async make(name, overrides = {}) {
+  make(name, overrides = {}) {
     if (!this._factories.hasOwnProperty(name)) {
       throw new Error(`Model '${name}' not defined`);
     }
@@ -34,42 +31,26 @@ export default class Factory {
     let callback = this._factories[name];
 
     // Do we want 1 or an array of several
-    // if(this._times !== null){
-    //     let amount = this._times;
-    //
-    //     this._times = null;
-    //
-    //     return [...new Array(amount)].map(i => {
-    //         return this._makeOnce(callback, overrides);
-    //     })
-    // }
+    if (this._times !== null) {
+      let amount = this._times;
+
+      this._times = null;
+
+      return [...new Array(amount)].map(i => {
+        return this._makeOnce(callback, overrides);
+      });
+    }
 
     // return one instance
-    const val = await this._makeOnce(callback, overrides, name);
-    return val;
+    return this._makeOnce(callback, overrides);
   }
 
-  async _makeOnce(callback, overrides, name) {
+  _makeOnce(callback, overrides) {
     let obj = callback(this._faker, this);
 
-    // console.log(obj)
-    // console.log(overrides)
-
-    // let User1 = require(`../../resources/user/${name.toLowerCase()}.model`);
-    let User = require(`../../models/user.model`);
-    // import {User} from "../../resources/user/user.model";
-    // User.debugeee();
-    // console.log(User);
-    // console.log({
-    //   ...obj,
-    //   ...overrides
-    // });
-
-    // let instance = await User.create({
-    //   ...obj,
-    //   ...overrides
-    // });
-
-    return User;
+    return {
+      ...obj,
+      ...overrides
+    };
   }
 }

@@ -5,19 +5,11 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import faker from '@faker-js/faker';
 
-import { createConnection, DefaultNamingStrategy, getConnectionOptions } from "typeorm";
+import { createConnection, getConnectionOptions } from "typeorm";
 
 import indexRouter from './routes';
 import usersRouter from './routes/users';
 import {User} from "./database/models/User";
-
-class NamingStrategy extends DefaultNamingStrategy {
-  eagerJoinRelationAlias(alias: string, propertyPath: string): string {
-    let out = alias + "_" + propertyPath.replace(".", "_");
-    let match = out.match(/_/g) || [];
-    return out + match.length;
-  }
-}
 
 const app = express();
 
@@ -73,8 +65,8 @@ const start = async () => {
     user.lastName = faker.name.lastName();
     user.email = faker.internet.email(user.firstName, user.lastName);
 
-    user.age = faker.random.number({min: 10, max: 60});
-    await user.save();
+    user.age = faker.datatype.number({min: 10, max: 60});
+    // await user.save();
     // await connection.manager.save(user);
     console.log('2 save');
 

@@ -1,10 +1,10 @@
-{
+module.exports = {
    "type": "mongodb",
    "database": "api-design",
    "synchronize": true,
-   "url": "mongodb://localhost:27017/api-design",
-   "host": "localhost",
-   "port": "27017",
+   "url": process.env.MONGO_CONNECTION_STRING,
+   "host": process.env.MONGO_HOST,
+   "port": process.env.MONGO_PORT,
    "logging": false,
    "useUnifiedTopology": true,
    "connectTimeout": 5000,

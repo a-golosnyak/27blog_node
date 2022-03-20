@@ -7,7 +7,8 @@
       "dev": "nodemon --exec ts-node src/app.ts",
       "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
       "fresh": "ts-node src/database/fresh.ts",
-      "seed": "ts-node src/database/seeds"
+      "seed": "ts-node src/database/seeds",
+      "seed__": "ts-node src/database/factories/run"
    },
    "dependencies": {
       "cookie-parser": "~1.4.4",
