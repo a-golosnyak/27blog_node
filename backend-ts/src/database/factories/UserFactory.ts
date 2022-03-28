@@ -1,26 +1,22 @@
-import Factory from './index'
+import { User } from '../models/User';
+import faker from 'faker';
 
-(async () => {
-  console.log('Seeder');
+export default class UserFactory {
+  static async create(params: any , qty = 1) {
+    const users = [];
 
-  try{
+    for (let i = 0; i < qty; i++) {
+      const user = new User();
+      user.firstName = params?.firstName ?? faker.name.firstName();
+      user.lastName = params?.lastName ?? faker.name.lastName();
+      user.age = params?.age ?? faker.datatype.number({min: 10, max: 60});
+      user.email = params?.email ?? faker.internet.email(user.firstName, user.lastName);
+      user.role = params?.role ?? 'user'
+      let result = await user.save();
+      users.push(result);
+    }
 
-    const factory = new Factory();
-
-    factory.define('User', faker => {
-      return ({
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        email: faker.internet.email(this.firstName, this.lastName),
-        age: faker.datatype.number({min: 10, max: 60})
-      })
-    })
-
-  } catch (e) {
-    console.log(e)
+    return users;
   }
+}
 
-
-})();
-
-process.exit();

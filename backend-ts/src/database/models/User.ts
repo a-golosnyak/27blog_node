@@ -1,8 +1,18 @@
-import {Entity, ObjectIdColumn, ObjectID, Column, BaseEntity} from "typeorm";
+import {
+    Entity,
+    ObjectIdColumn,
+    ObjectID,
+    Column,
+    BaseEntity,
+    OneToMany,
+    CreateDateColumn,
+    PrimaryGeneratedColumn
+} from "typeorm";
+import {Post} from "./Post";
+import {Role} from "./Role";
 
 @Entity('users')
 export class User extends BaseEntity{
-
     @ObjectIdColumn()
     id: ObjectID;
 
@@ -21,4 +31,19 @@ export class User extends BaseEntity{
     @Column()
     age: number;
 
+    @CreateDateColumn()
+    createdAt: Date;
+
+    @CreateDateColumn()
+    updatedAt: Date;
+
+    @Column((type) => Role)
+    role: string
+
+    // @OneToMany (
+    //   type => Post,
+    //     post => post.user,
+    //   { onDelete: "CASCADE" }
+    // )
+    // posts: Post[];
 }

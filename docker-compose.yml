@@ -12,8 +12,8 @@ services:
   #      - ./data:/data/db
   #    volumes:
   #      - mongodata:/data/db
-  #    command: --quiet
-  #    command: mongod --quiet --logpath /dev/null
+#    command: --quiet
+    command: mongod --quiet --logpath /dev/null
   #    restart: unless-stopped
   #  volumes:
   #    mongodata:

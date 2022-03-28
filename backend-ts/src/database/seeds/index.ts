@@ -1,7 +1,11 @@
 import faker from "@faker-js/faker";
-import userSeeder from '../seeds/userSeeder'
-import {createConnection, getConnectionOptions} from "typeorm";
+import roleFactory from '../factories/roleFactory'
+import userFactory from '../factories/userFactory'
+import userFactory_ from '../factories/userFactory_'
+import {createConnection, createQueryBuilder, getConnectionOptions, getMongoManager} from "typeorm";
 import {User} from "../models/User";
+import {Post} from "../models/Post";
+import PostFactory from "../factories/PostFactory";
 
 (async () => {
   console.log('Common Seeder -------------------');
@@ -28,14 +32,48 @@ import {User} from "../models/User";
       })
     );
     //------------------------------------------------------------
-    let users = await userSeeder.create({lastName: 'Smith1' }, 2);
-    console.log(users.map((item) => item.email));
-    //------------------------------------------------------------
+    let superadmin = await roleFactory.create({name: 'superadmin' });
+    let admin = await roleFactory.create({name: 'admin' });
+    let user = await roleFactory.create({name: 'user' });
+    console.log(superadmin[0].name, ' ', admin[0].name, ' ', user[0].name);
+    // // ------------------------------------------------------------
+    superadmin = await userFactory.create({
+      email: 'andreygoldpua@gmail.com',
+      password: '111',
+      role: 'superadmin'
+    }, 1);
+
+    admin = await userFactory.create({
+      email: 'aaa@gmail.com',
+      password: '111',
+      role: 'admin'
+    }, 1);
+
+    user = await userFactory.create({
+      email: 'bbb@gmail.com',
+      password: '111',
+      role: 'user'
+    }, 1);
+    console.log(superadmin[0].email, ' ', admin[0].email, ' ', user[0].email);
+    // console.log(superadmin[0].email);
+    // //------------------------------------------------------------
+    const post = await PostFactory.create({
+      user: user[0].email
+      // user: 'bbb@gmail.com'
+    }, 5);
+
+    console.log(post);
+    // console.log(posts.map(item => item.title));
 
     //------------------------------------------------------------
     //------------------------------------------------------------
 
     console.log('Entities created ----------------');
+
+    //------------------------------------------------------------
+    // const posts_ = await getMongoManager().find(Post);
+    // console.log(posts_);
+    //------------------------------------------------------------
 
     process.exit();
   } catch (e) {
