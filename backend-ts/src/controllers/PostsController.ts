@@ -1,6 +1,7 @@
 import {Post} from "../database/models/Post";
-import { getMongoManager } from "typeorm"
+import {getMongoManager, ObjectID} from "typeorm"
 import faker from "@faker-js/faker";
+import * as mongodb from "mongodb";
 
 class PostsController {
   static async index(req, res) {
@@ -15,16 +16,16 @@ class PostsController {
 
   static async show(req, res) {
     try {
-      const doc = await getMongoManager().findOne(Post, [req.params.id]) ;
+      const doc = await getMongoManager().findOne(Post, req.params.id);
 
       if (!doc) {
-        return res.status(400).end()
+        res.status(400).json({ error: 'Doesn\'t find'});
       }
 
       res.status(200).json({ data: doc })
     } catch (e) {
       console.error(e)
-      res.status(400).end()
+      res.status(400).json({ error: e });
     }
 
   }
@@ -32,12 +33,12 @@ class PostsController {
   static async create(req, res) {
     // const createdBy = req.user._id
     try {
-      const doc = await getMongoManager().create(Post, { ...req.body })
-      // const doc = await getMongoManager().create(Post, {
-      //   title: req.params.title ?? 'Title create ' + faker.lorem.sentence(),
-      //   body: req.params.body ?? faker.lorem.paragraph(),
-      //   user: req.params.user
-      // })
+      // const doc = await getMongoManager().create(Post, { ...req.body })
+      const doc = await getMongoManager().create(Post, {
+        title: req.params.title ?? 'Title 1 ' + faker.lorem.sentence(),
+        body: req.params.body ?? faker.lorem.paragraph(),
+        user: req.params.user ?? 'zzz@mail.ru'
+      }).save()
       res.status(201).json({ data: doc })
     } catch (e) {
       console.error(e)
@@ -47,46 +48,47 @@ class PostsController {
 
   static async update(req, res) {
     try {
-      // const updatedDoc = await model
-      //   .findOneAndUpdate(
-      //     {
-      //       createdBy: req.user._id,
-      //       _id: req.params.id
-      //     },
-      //     req.body,
-      //     { new: true }
-      //   )
-      //   .lean()
-      //   .exec()
-
-      console.log('----- Here -------------------------')
-      console.log(req.params.id)
-
       const updatedDoc = await getMongoManager()
         .findOneAndUpdate(Post, {
-            _id: req.params.id
+            _id: new mongodb.ObjectId(req.params.id)
           },
           {
-            title: req.params.title ?? 'Title create ' + faker.lorem.sentence(),
-            body: req.params.body ?? faker.lorem.paragraph(),
-            user: req.params.user
-          }
+            $set: {
+              title: req.params.title ?? 'Title 6 ' + faker.lorem.sentence(),
+              body: req.params.body ?? faker.lorem.paragraph(),
+              // user: req.params.user
+            }
+          },
+          { upsert: true }
         )
 
+
       if (!updatedDoc) {
-        return res.status(400).end()
+        res.status(400).json({ error: 'Not find' })
       }
 
-      res.status(200).json({ data: updatedDoc })
+      res.status(200).json({ data: updatedDoc.value })
     } catch (e) {
       console.error(e)
-      res.status(400).end()
+      res.status(400).json({ error: e})
+
     }
   }
 
   static async destroy(req, res) {
-    res.send('destroy').status(200).end();
+    try {
+      const removed = await getMongoManager().findOneAndDelete(Post, {
+        _id: new mongodb.ObjectId(req.params.id)
+      })
+      if (!removed) {
+        res.status(400).json({ error: 'Not find' })
+      }
+      return res.status(200).json({ data: removed })
+    } catch (e) {
+      console.error(e)
+      res.status(400).json({ error: e})
 
+    }
   }
 }
 
