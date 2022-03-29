@@ -27,7 +27,6 @@ class PostsController {
       console.error(e)
       res.status(400).json({ error: e });
     }
-
   }
 
   static async create(req, res) {
