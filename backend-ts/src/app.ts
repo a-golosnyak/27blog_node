@@ -8,13 +8,14 @@ import usersRouter from './routes/users';
 import postsRouter from './routes/posts';
 import {User} from "./database/models/User";
 import {fakeProtect, protect} from "./utils/auth";
+import bodyParser from 'body-parser'
 
 const app = express();
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(cors())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', async (req, res) => {
   return res.status(200).send({ message: 'Welcome to the contacts API! ' });
@@ -31,6 +32,7 @@ app.use('/api', async (req, res, next) => {
 })
 app.use('/api/user', usersRouter);
 app.use('/api/post', postsRouter);
+// app.use(errorHandler);
 
 const start = async () => {
     // getConnectionOptions()
@@ -87,3 +89,9 @@ const start = async () => {
 
 start()
   .catch(err => console.log(err));
+
+
+function errorHandler(err, req, res, next) {
+  res.status(500);
+  res.render('error', { error: err });
+}

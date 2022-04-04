@@ -18,7 +18,8 @@
       "morgan": "~1.9.1",
       "nodemon": "^2.0.15",
       "reflect-metadata": "^0.1.13",
-      "typeorm": "0.2.45"
+      "typeorm": "0.2.45",
+      "validatorjs": "^3.22.1"
    },
    "devDependencies": {
       "@faker-js/faker": "^6.0.0-beta.0",

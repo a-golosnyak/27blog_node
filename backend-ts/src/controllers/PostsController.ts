@@ -14,7 +14,7 @@ class PostsController {
     }
   }
 
-  static async show(req, res) {
+  static async show(err, req, res, next) {
     try {
       const doc = await getMongoManager().findOne(Post, req.params.id);
 
@@ -32,14 +32,17 @@ class PostsController {
 
   static async create(req, res) {
     // const createdBy = req.user._id
+    console.log('----- PostsController.create ------------------');
+
     try {
       // const doc = await getMongoManager().create(Post, { ...req.body })
-      const doc = await getMongoManager().create(Post, {
-        title: req.params.title ?? 'Title 1 ' + faker.lorem.sentence(),
-        body: req.params.body ?? faker.lorem.paragraph(),
-        user: req.params.user ?? 'zzz@mail.ru'
-      }).save()
-      res.status(201).json({ data: doc })
+      // const doc = await getMongoManager().create(Post, {
+      //   title: req.params.title ?? 'Title 1 ' + faker.lorem.sentence(),
+      //   body: req.params.body ?? faker.lorem.paragraph(),
+      //   user: req.params.user ?? 'zzz@mail.ru'
+      // }).save()
+      // res.status(201).json({ data: doc })
+      res.status(201).json({ data: req.body })
     } catch (e) {
       console.error(e)
       res.status(400).end()
