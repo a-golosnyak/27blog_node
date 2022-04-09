@@ -14,7 +14,7 @@ class PostsController {
     }
   }
 
-  static async show(err, req, res, next) {
+  static async show(req, res, next) {
     try {
       const doc = await getMongoManager().findOne(Post, req.params.id);
 
