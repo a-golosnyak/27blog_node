@@ -3,7 +3,7 @@ import Post from "../../rules/Post";
 
 export class UpdatePostRequest {
   static async validate(req, res, next) {
-    console.log('----- Middleware UpdatePostRequest.validate ------------------');
+    console.log('----- Middleware UpdatePostRequest.validate -----------------');
     console.log(req.body);
 
     let validation = new Validator(req.body, UpdatePostRequest.rules(), Post.messages());
