@@ -11,20 +11,22 @@
       "seed__": "ts-node src/database/factories/run"
    },
    "dependencies": {
-      "cookie-parser": "~1.4.4",
-      "debug": "~2.6.9",
+      "bcryptjs": "2.4.3",
+      "cookie-parser": "1.4.4",
+      "debug": "2.6.9",
       "express": "4.17.3",
-      "mongodb": "^3.0.8",
+      "jsonwebtoken": "^8.5.1",
+      "mongodb": "3.0.8",
       "morgan": "~1.9.1",
-      "nodemon": "^2.0.15",
-      "reflect-metadata": "^0.1.13",
+      "nodemon": "2.0.15",
+      "reflect-metadata": "0.1.13",
       "typeorm": "0.2.45",
       "validatorjs": "^3.22.1"
    },
    "devDependencies": {
-      "@faker-js/faker": "^6.0.0-beta.0",
-      "@types/node": "^16.11.10",
-      "faker": "^5.5.3",
+      "@faker-js/faker": "6.0.0-beta.0",
+      "@types/node": "16.11.10",
+      "faker": "5.5.3",
       "ts-node": "10.4.0",
       "typescript": "4.5.2"
    }

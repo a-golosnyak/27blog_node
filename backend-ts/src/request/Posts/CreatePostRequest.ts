@@ -5,17 +5,19 @@ export class CreatePostRequest {
   static async validate(req, res, next) {
     let validation = new Validator(req.body, CreatePostRequest.rules(), Post.messages());
 
-    if(validation.passes()) {
+    if (validation.passes()) {
       next();
+    } else {
+      console.log('----- CreatePostRequest ------------------');
+      res.status(422).send(validation.errors)
     }
-    res.status(422).send(validation.errors)
   }
 
   static rules(){
     return {
-      email: 'required',
-      firstName: 'required',
-      lastName: 'required',
+      title:  'required|string',
+      body:   'required|string',
+      user:   'required|string',
     }
   }
 }

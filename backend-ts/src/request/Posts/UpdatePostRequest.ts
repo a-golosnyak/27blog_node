@@ -3,7 +3,7 @@ import Post from "../../rules/Post";
 
 export class UpdatePostRequest {
   static async validate(req, res, next) {
-    console.log('----- Middleware UpdatePostRequest.validate ------------------');
+    console.log('----- Middleware UpdatePostRequest.validate -----------------');
     console.log(req.body);
 
     let validation = new Validator(req.body, UpdatePostRequest.rules(), Post.messages());
@@ -13,15 +13,15 @@ export class UpdatePostRequest {
 
     if(validation.passes()) {
       next();
-    }
-    res.status(422).send(validation.errors)
+    } else
+      res.status(422).send(validation.errors)
   }
 
   static rules(){
     return {
-      email: 'required',
-      firstName: 'required',
-      lastName: 'required',
+      title: 'string',
+      body: 'string',
+      user: 'string',
     }
   }
 }

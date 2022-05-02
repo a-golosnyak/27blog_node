@@ -52,6 +52,8 @@ services:
     environment:
 #      APP_PORT: '${APP_PORT}'
       MONGO_CONNECTION_STRING: '${MONGO_CONNECTION_STRING}'
+      JWT_SECRET: '${JWT_SECRET}'
+      JWT_EXP: '${JWT_EXP}'
     links:
       - mongo
     depends_on:

@@ -1,9 +1,12 @@
 class Post {
   static messages () {
     return {
-      "required.email": "Without an :attribute we can't reach you!",
-      "required.firstName": "Without an :attribute we can't reach you!",
-      "required.lastName": "Without an :attribute we can't reach you!!"
+      "required.title": "Parameter :attribute required.",
+      "required.body": "Parameter :attribute required.",
+      "required.user": "Parameter :attribute required.",
+      "string.title": "Parameter :attribute must be string.",
+      "string.body": "Parameter :attribute must be string.",
+      "string.user": "Parameter :attribute must be string."
     }
   }
 }
