@@ -7,8 +7,10 @@ import { createConnection, getConnectionOptions } from "typeorm";
 import usersRouter from './routes/users';
 import postsRouter from './routes/posts';
 import {User} from "./database/models/User";
-import {fakeProtect, protect} from "./utils/auth";
+import { AuthService } from "./services/AuthService"
 import bodyParser from 'body-parser'
+import {AuthController} from "./controllers/AuthController";
+import RegisterRequest from "./request/Auth/RegisterRequest";
 
 const app = express();
 
@@ -21,15 +23,15 @@ app.get('/', async (req, res) => {
   return res.status(200).send({ message: 'Welcome to the contacts API! ' });
 });
 
-app.post('/register', (req, res) => {
-  console.log('Here 1')
-  res.status(200).send({message: 'Request received'});
-});
-// app.post('/login', signin);
+app.post('/register', RegisterRequest.validate, AuthController.register);
+app.post('/login', RegisterRequest.validate, AuthController.login);
 
 app.use('/api', async (req, res, next) => {
   next()
 })
+
+app.use('/', AuthService.protect);
+
 app.use('/api/user', usersRouter);
 app.use('/api/post', postsRouter);
 // app.use(errorHandler);

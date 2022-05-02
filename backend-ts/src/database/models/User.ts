@@ -10,6 +10,9 @@ import {
 } from "typeorm";
 import {Post} from "./Post";
 import {Role} from "./Role";
+import {rejects} from "assert";
+import {webcrypto} from "crypto";
+import bcrypt from 'bcryptjs'
 
 @Entity('users')
 export class User extends BaseEntity{
@@ -46,4 +49,34 @@ export class User extends BaseEntity{
     //   { onDelete: "CASCADE" }
     // )
     // posts: Post[];
+
+    // public async hashPassword(password) {
+    //     return await new Promise((resolve, reject) => {
+    //         bcrypt.hash(password, 8, (err, hash) => {
+    //             if (err) {
+    //                 reject(err);
+    //             }
+    //             console.log('----- hashPassword ------------------');
+    //             console.log(hash);
+    //
+    //             resolve(hash);
+    //         })
+    //     })
+    // }
+
+    public hashPassword(password) {
+        return bcrypt.hashSync(password, 8);
+    }
+
+    public checkPassword (password) {
+        const passwordHash = this.password;
+        return new Promise((resolve, reject) => {
+            bcrypt.compare(password, passwordHash, (err, same) => {
+                if(err) {
+                    return reject(err);
+                }
+                resolve(same);
+            })
+        })
+    }
 }

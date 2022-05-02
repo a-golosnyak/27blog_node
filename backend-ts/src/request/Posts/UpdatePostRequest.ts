@@ -13,15 +13,15 @@ export class UpdatePostRequest {
 
     if(validation.passes()) {
       next();
-    }
-    res.status(422).send(validation.errors)
+    } else
+      res.status(422).send(validation.errors)
   }
 
   static rules(){
     return {
-      email: 'required',
-      firstName: 'required',
-      lastName: 'required',
+      title: 'string',
+      body: 'string',
+      user: 'string',
     }
   }
 }
