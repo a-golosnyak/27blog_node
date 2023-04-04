@@ -1,26 +1,24 @@
 import "reflect-metadata";
 import express from "express";
-import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import faker from '@faker-js/faker';
-import { createConnection, getConnectionOptions } from "typeorm";
 import usersRouter from './routes/users';
 import postsRouter from './routes/posts';
-import {User} from "./database/models/User";
-import { AuthService } from "./services/AuthService"
-import bodyParser from 'body-parser'
+import {AuthService} from "./services/AuthService"
+import bodyParser from "body-parser"
 import {AuthController} from "./controllers/AuthController";
 import RegisterRequest from "./request/Auth/RegisterRequest";
+import {AppDataSource} from "./AppDataSource";
 
-const app = express();
+export const app = express();
+export let server;
 
 app.use(logger('dev'));
 // app.use(cors())
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', async (req, res) => {
-  return res.status(200).send({ message: 'Welcome to the contacts API! ' });
+  return res.status(200).send({ message: 'Welcome to the contacts API!' });
 });
 
 app.post('/register', RegisterRequest.validate, AuthController.register);
@@ -37,30 +35,24 @@ app.use('/api/post', postsRouter);
 // app.use(errorHandler);
 
 const start = async () => {
-    // getConnectionOptions()
-    // .then( data => {
-    //   console.log("--- Here then -----------");
-    //   // console.log(data);
-    //
-    //   createConnection(data).then(async connection => {
-    //     console.log("--- Here connection -----------");
-    //     // console.log(connection);
-    //   }).catch(e => console.log(e));
-    // })
-    // .catch(e => console.log(e));
   try {
-    console.log("--- Here env -----------------------");
+    console.log("--- Here env ------------------------");
     console.log(process.env.NODE_ENV);
     console.log(process.env.APP_PORT);
     console.log(process.env.MONGO_CONNECTION_STRING);
+    // console.log(ormconfig);
     console.log("------------------------------------");
 
-    let connectionOptions = await getConnectionOptions();
-    await createConnection(
-      Object.assign(connectionOptions, {
-        url: process.env.MONGO_CONNECTION_STRING
+    await AppDataSource.initialize()
+      .then(() => {
+        console.log('Data Source has been initialized!');
       })
-    );
+      .catch((err) => {
+        console.error('Error during Data Source initialization', err);
+      });
+
+    // const myDataSource = new DataSource(ormconfig)
+    // await myDataSource.connect();
 
     // console.log("Inserting a new user into the database...");
     // const user = new User();
@@ -82,7 +74,7 @@ const start = async () => {
     console.log(e);
   }
 
-  app.listen(process.env.APP_PORT, () => {
+  server = await app.listen(process.env.APP_PORT, () => {
     console.log(
       `🚀 Server ready at http://localhost:${process.env.APP_PORT}`
     );
@@ -97,3 +89,6 @@ function errorHandler(err, req, res, next) {
   res.status(500);
   res.render('error', { error: err });
 }
+
+module.exports = app;
+module.exports = server;

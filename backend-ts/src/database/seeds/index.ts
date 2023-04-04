@@ -1,14 +1,16 @@
-import faker from "@faker-js/faker";
 import roleFactory from '../factories/roleFactory'
 import userFactory from '../factories/userFactory'
-import userFactory_ from '../factories/userFactory_'
-import {createConnection, createQueryBuilder, getConnectionOptions, getMongoManager} from "typeorm";
-import {User} from "../models/User";
-import {Post} from "../models/Post";
 import PostFactory from "../factories/PostFactory";
+import ormconfig from "../../../ormconfig.js"
+import {AppDataSource} from "../../AppDataSource";
 
 (async () => {
   console.log('Common Seeder -------------------');
+  console.log(ormconfig.host);
+  console.log(ormconfig.port);
+  console.log(ormconfig.url);
+  // console.log(ormconfig.process.env.MONGO_HOST);
+  // console.log(ormconfig.process.env.MONGO_PORT);
 
   // try{
 // console.log('Here common seeder! -------')
@@ -24,13 +26,30 @@ import PostFactory from "../factories/PostFactory";
 // console.log(faker.random.word())
 
   try {
-    let connectionOptions = await getConnectionOptions();
+    // let connectionOptions = await DataSourceOptions();
+    //
+    // await createConnection(
+    //   Object.assign(connectionOptions, {
+    //     url: process.env.MONGO_CONNECTION_STRING
+    //   })
+    // );
 
-    await createConnection(
-      Object.assign(connectionOptions, {
-        url: process.env.MONGO_CONNECTION_STRING
+    // const myDataSource = new DataSource(ormconfig)
+    // await myDataSource.connect();
+
+    // const appDataSource = new DataSource(ormconfig);
+    // await appDataSource.initialize();
+    // await appDataSource.connect();
+
+    // const dataSource = new DataSource(ormconfig);
+    await AppDataSource.initialize()
+      .then(() => {
+        console.log('Data Source has been initialized!');
       })
-    );
+      .catch((err) => {
+        console.error('Error during Data Source initialization', err);
+      });
+
     //------------------------------------------------------------
     let superadmin = await roleFactory.create({name: 'superadmin' });
     let admin = await roleFactory.create({name: 'admin' });

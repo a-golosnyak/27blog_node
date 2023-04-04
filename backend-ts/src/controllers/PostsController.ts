@@ -7,6 +7,8 @@ class PostsController {
   static async index(req, res) {
     try {
       const docs = await Post.find();
+      console.log('--- Here PostsController.index -----')
+      // console.log(req)
       res.status(200).json({data: docs})
     } catch (e) {
       console.error(e)

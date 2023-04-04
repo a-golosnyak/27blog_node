@@ -6,14 +6,14 @@ services:
 #    env_file:
 #      - ./backend/.env
     ports:
-      - "27018:27017"
+      - "27017:27017"
   #        =============================
   #    volumes:
   #      - ./data:/data/db
   #    volumes:
   #      - mongodata:/data/db
 #    command: --quiet
-    command: mongod --quiet --logpath /dev/null --port 27017
+    command: mongod --quiet --logpath /dev/null
   #    restart: unless-stopped
   #  volumes:
   #    mongodata:
@@ -37,32 +37,28 @@ services:
 #    depends_on:
 #      - mongo
 #    restart: always
-  backend-ts:
-    container_name: backend-ts
-    build:
-      context: "./backend-ts"
-      dockerfile: "Dockerfile"
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./backend-ts/src:/home/backend-ts/src
-#      - ./backend-ts/database:/home/backend-ts/database
-    env_file:
-      - ./backend/.env
-    environment:
-      NODE_ENV: '${NODE_ENV}'
-      APP_URL: '${APP_URL}'
-      APP_PORT: '${APP_PORT}'
-      MONGO_CONNECTION_STRING: '${MONGO_CONNECTION_STRING}'
-      JWT_SECRET: '${JWT_SECRET}'
-      JWT_EXP: '${JWT_EXP}'
-      MONGO_HOST: '${MONGO_HOST}'
-      MONGO_PORT: '${MONGO_PORT}'
-    links:
-      - mongo
-    depends_on:
-      - mongo
-    restart: always
+#  backend-ts:
+#    container_name: backend-ts
+#    build:
+#      context: "./backend-ts"
+#      dockerfile: "Dockerfile"
+#    ports:
+#      - "3000:3000"
+#    volumes:
+#      - ./backend-ts/src:/home/backend-ts/src
+##      - ./backend-ts/database:/home/backend-ts/database
+#    env_file:
+#      - ./backend/.env
+#    environment:
+##      APP_PORT: '${APP_PORT}'
+#      MONGO_CONNECTION_STRING: '${MONGO_CONNECTION_STRING}'
+#      JWT_SECRET: '${JWT_SECRET}'
+#      JWT_EXP: '${JWT_EXP}'
+#    links:
+#      - mongo
+#    depends_on:
+#      - mongo
+#    restart: always
 
 #  frontend:
 #    container_name: frontend
@@ -92,7 +88,4 @@ services:
 #    volumes:
 #      - ./frontend-vue/src:/home/frontend/src
 #
-#networks:
-#  myapp:
-#    driver: bridge
 
