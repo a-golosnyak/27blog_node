@@ -30,8 +30,10 @@
 // export default merge(baseConfig, envConfig)
 
 export default {
+  APP_URL: process.env.APP_URL || "http://localhost",
+  APP_PORT: process.env.APP_PORT || "3000",
   secrets: {
-    jwt: process.env.JWT_SECRET,
-    jwtExp: process.env.JWT_EXP
+    jwt: process.env.JWT_SECRET || 'secret',
+    jwtExp: process.env.JWT_EXP || '1d'
   }
 }

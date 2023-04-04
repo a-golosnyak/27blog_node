@@ -6,7 +6,6 @@ import bcrypt from 'bcryptjs'
 
 export class AuthService {
   static newToken = user => {
-    console.log('--- Here newToken -----');
     return jwt.sign({ id: user.id }, config.secrets.jwt, {
       expiresIn: config.secrets.jwtExp
     })

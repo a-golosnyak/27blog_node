@@ -10,3 +10,5 @@
 
 ### Testing
 THe other resources don't have any test, go ahead and write some!
+
+docker-compose -f docker-compose-test.yml up

@@ -2,9 +2,9 @@ module.exports = {
    "type": "mongodb",
    "database": "api-design",
    "synchronize": true,
-   "url": process.env.MONGO_CONNECTION_STRING,
-   "host": process.env.MONGO_HOST,
-   "port": process.env.MONGO_PORT,
+   url: process.env.MONGO_CONNECTION_STRING,    // needed for app into container
+   "host": process.env.MONGO_HOST || 'localhost',  // seeder option
+   "port": process.env.MONGO_PORT || '27018',      // seeder option
    "logging": false,
    "useUnifiedTopology": true,
    "connectTimeout": 5000,
