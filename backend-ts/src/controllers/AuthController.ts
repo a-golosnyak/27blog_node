@@ -1,7 +1,7 @@
 import { User } from "../database/models/User";
 import userFactory from "../database/factories/UserFactory";
-import {AuthService} from "../services/AuthService";
-import {AppDataSource} from "../AppDataSource";
+import { AuthService } from "../services/AuthService";
+import { AppDataSource } from "../AppDataSource";
 
 export class AuthController {
   static appDataSource = AppDataSource;
@@ -12,10 +12,12 @@ export class AuthController {
     }
 
     try {
-      console.log('----- AuthController.register ------------------');
+      console.log('----- AuthController.register -------------------');
       console.log(req.body);
 
-      const userExists = await this.appDataSource.manager.findOne(User, {where: {email: req.body.email}});
+      // const userExists = await this.appDataSource.manager.findOne(User, {where: {email: req.body.email}});
+      const userExists = await User.findOne({where: {email: req.body.email}});
+      console.log('----- userExists ', userExists);
 
       if (userExists) {
         return res.status(400).send({ message: 'User allready exists'});
@@ -44,7 +46,9 @@ export class AuthController {
     const invalid = { message: 'Invalid email and passoword combination' }
 
     try {
-      const user = await this.appDataSource.manager.findOne(User, {where: {email: req.body.email}});
+      const user = await User.findOne({where: {email: req.body.email}});
+
+      console.log('----- user ', user);
 
       if (!user) {
         return res.status(401).send(invalid)

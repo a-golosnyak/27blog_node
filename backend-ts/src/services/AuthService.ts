@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import config from '../config'
 import {getMongoManager} from "typeorm";
-import {User} from "../database/models/User";
+import { User } from "../database/models/User";
 import bcrypt from 'bcryptjs'
 
 export class AuthService {

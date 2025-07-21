@@ -2,7 +2,7 @@ import roleFactory from '../factories/roleFactory'
 import userFactory from '../factories/userFactory'
 import PostFactory from "../factories/PostFactory";
 import ormconfig from "../../../ormconfig.js"
-import {AppDataSource} from "../../AppDataSource";
+import { AppDataSource } from "../../AppDataSource";
 
 (async () => {
   console.log('Common Seeder -------------------');
@@ -12,7 +12,7 @@ import {AppDataSource} from "../../AppDataSource";
   // console.log(ormconfig.process.env.MONGO_HOST);
   // console.log(ormconfig.process.env.MONGO_PORT);
 
-  // try{
+  // try {
 // console.log('Here common seeder! -------')
 // console.log(faker.commerce.product())
 // console.log(faker.commerce.product())
