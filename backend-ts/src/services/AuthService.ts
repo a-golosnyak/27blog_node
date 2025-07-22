@@ -3,6 +3,7 @@ import config from '../config'
 import {getMongoManager} from "typeorm";
 import { User } from "../database/models/User";
 import bcrypt from 'bcryptjs'
+import { ObjectId } from 'mongodb'
 
 export class AuthService {
   static newToken = user => {
@@ -11,7 +12,7 @@ export class AuthService {
     })
   }
 
-  static verifyToken = token => {
+  static verifyToken = (token: string) => {
     console.log("--- Here verifyToken -----------");
     console.log(token)
 
@@ -42,14 +43,18 @@ export class AuthService {
     }
 
     const token = bearer.split('Bearer ')[1].trim()
-    let payload
+    let payload;
     try {
       payload = await AuthService.verifyToken(token);
     } catch (e) {
       return res.status(401).end()
     }
 
-    const user = await getMongoManager().findOne(User, payload.id);
+    console.log("--- payload.id ----", payload.id);
+
+    const user = await User.findOne({ where: { _id: new ObjectId(payload.id) }});
+
+    console.log("--- user -----", user.email);
 
     if (!user) {
       return res.status(401).end()

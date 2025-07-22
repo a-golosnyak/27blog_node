@@ -1,19 +1,17 @@
+import { ObjectId } from "mongodb";
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
-  Entity, JoinColumn,
-  ManyToOne,
-  ObjectID,
+  Entity,
   ObjectIdColumn,
-  PrimaryGeneratedColumn
 } from "typeorm";
-import {User} from "./User";
+import { User } from "./User";
 
 @Entity('posts')
 export class Post extends BaseEntity {
   @ObjectIdColumn()
-  id: ObjectID;
+  _id: ObjectId;
 
   @Column({ length: 80 })
   title: string;

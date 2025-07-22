@@ -1,23 +1,21 @@
 import {
     Entity,
     ObjectIdColumn,
-    ObjectID,
     Column,
     BaseEntity,
-    OneToMany,
     CreateDateColumn,
-    PrimaryGeneratedColumn
 } from "typeorm";
 import {Post} from "./Post";
 import {Role} from "./Role";
 import {rejects} from "assert";
 import {webcrypto} from "crypto";
 import bcrypt from 'bcryptjs'
+import { ObjectId } from "mongodb";
 
 @Entity('users')
 export class User extends BaseEntity{
     @ObjectIdColumn()
-    id: ObjectID;
+    _id: ObjectId;
 
     @Column()
     email: string;
@@ -64,11 +62,11 @@ export class User extends BaseEntity{
     //     })
     // }
 
-    public hashPassword(password) {
+    public hashPassword(password: string) {
         return bcrypt.hashSync(password, 8);
     }
 
-    public checkPassword (password) {
+    public checkPassword (password: string) {
         const passwordHash = this.password;
         return new Promise((resolve, reject) => {
             bcrypt.compare(password, passwordHash, (err, same) => {

@@ -1,39 +1,42 @@
 import {Post} from "../database/models/Post";
-import {getMongoManager, ObjectID} from "typeorm"
+import {getMongoManager} from "typeorm"
 import faker from "@faker-js/faker";
 import * as mongodb from "mongodb";
+import { ObjectId } from "mongodb";
+import {NextFunction, Request, Response} from "express";
 
 class PostsController {
-  static async index(req, res) {
+  static async index(req: Request, res: Response): Promise<void> {
     try {
       const docs = await Post.find();
-      console.log('--- Here PostsController.index -----')
-      // console.log(req)
-      res.status(200).json({data: docs})
-    } catch (e) {
-      console.error(e)
-      res.status(400).end()
-    }
-  }
+      console.log('--- Here PostsController.index -----');
 
-  static async show(req, res, next) {
-    try {
-      const doc = await getMongoManager().findOne(Post, req.params.id);
-
-      if (!doc) {
-        res.status(400).json({ error: 'Doesn\'t find'});
-      }
-
-      res.status(200).json({ data: doc })
+      res.status(200).send({data: docs});
     } catch (e) {
       console.error(e)
       res.status(400).json({ error: e });
     }
   }
 
-  static async create(req, res) {
+  static async show(req: Request, res: Response, next: NextFunction) {
+    try {
+      const doc = await Post.findOne({ where: { _id: new ObjectId(req.params.id) } });
+
+      if (!doc) {
+        res.status(400).json({ error: 'Doesn\'t find'});
+      }
+
+      res.status(200).json({ data: doc });
+    } catch (e) {
+      console.error(e)
+      res.status(400).json({ error: e });
+    }
+  }
+
+  static async create(req: Request, res: Response) {
     // const createdBy = req.user._id
-    console.log('----- PostsController.create ------------------');
+    console.log('----- PostsController.create -------------------');
+    console.log('req', req.body);
 
     try {
       // const doc = await getMongoManager().create(Post, { ...req.body })
@@ -43,7 +46,19 @@ class PostsController {
       //   user: req.params.user ?? 'zzz@mail.ru'
       // }).save()
       // res.status(201).json({ data: doc })
-      res.status(201).json({ data: req.body })
+
+      const post: Post = Post.create({
+        title: req.body.title,
+        body: req.body.body,
+        user: req.body.user ?? '111'
+      });
+
+      let result = await post.save();
+
+      console.log('post', post);
+      console.log('result', result);
+
+      res.status(201).json({ data: { id: post._id }});
     } catch (e) {
       console.error(e)
       res.status(400).end()

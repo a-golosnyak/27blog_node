@@ -12,10 +12,10 @@ import {AppDataSource} from "./AppDataSource";
 export const app = express();
 export let server;
 
-app.use(logger('dev'));
+app.use(logger('Logger test'));
 // app.use(cors())
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/', async (req, res) => {
   return res.status(200).send({ message: 'Welcome to the contacts API! ' });
@@ -25,15 +25,13 @@ app.get('/', async (req, res) => {
 app.post('/signup', RegisterRequest.validate, AuthController.register);
 app.post('/login', RegisterRequest.validate, AuthController.login);
 
-app.use('/api', async (req, res, next) => {
-  next()
-})
+// app.use('/api', async (req: Req, res, next) => {
+//   next()
+// })
 
-console.log('--- Here 1 ---');
 app.use('/', AuthService.protect);
-console.log('--- Here 2 ---');
-app.use('/api/user', usersRouter);
-app.use('/api/post', postsRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/posts', postsRouter);
 // app.use(errorHandler);
 
 
@@ -77,7 +75,7 @@ const start = async () => {
     console.log(e);
   }
 
-  server = await app.listen(process.env.APP_PORT, () => {
+  server = app.listen(process.env.APP_PORT, () => {
     console.log(
       `🚀 Server ready at http://localhost:${process.env.APP_PORT}`
     );
