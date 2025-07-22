@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const roleScheme = new mongoose.Schema({
   name: {
@@ -6,8 +6,8 @@ const roleScheme = new mongoose.Schema({
     required: true,
     trim: true
   }
-})
+});
 
-roleScheme.index({ name: 1 }, { unique: true })
+roleScheme.index({ name: 1 }, { unique: true });
 
-export const Role = mongoose.model('role', roleScheme)
+export const Role = mongoose.model('role', roleScheme);

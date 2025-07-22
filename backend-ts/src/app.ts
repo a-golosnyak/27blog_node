@@ -18,21 +18,24 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', async (req, res) => {
-  return res.status(200).send({ message: 'Welcome to the contacts API!' });
+  return res.status(200).send({ message: 'Welcome to the contacts API! ' });
 });
 
-app.post('/register', RegisterRequest.validate, AuthController.register);
+
+app.post('/signup', RegisterRequest.validate, AuthController.register);
 app.post('/login', RegisterRequest.validate, AuthController.login);
 
 app.use('/api', async (req, res, next) => {
   next()
 })
 
+console.log('--- Here 1 ---');
 app.use('/', AuthService.protect);
-
+console.log('--- Here 2 ---');
 app.use('/api/user', usersRouter);
 app.use('/api/post', postsRouter);
 // app.use(errorHandler);
+
 
 const start = async () => {
   try {
