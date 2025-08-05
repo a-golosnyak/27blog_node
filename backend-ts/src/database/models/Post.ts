@@ -1,19 +1,18 @@
+import { ObjectId } from "mongodb";
 import {
   BaseEntity,
   Column,
   CreateDateColumn,
-  Entity, JoinColumn,
-  ManyToOne,
-  ObjectID,
+  UpdateDateColumn,
+  DeleteDateColumn,
+  Entity,
   ObjectIdColumn,
-  PrimaryGeneratedColumn
 } from "typeorm";
-import {User} from "./User";
 
 @Entity('posts')
 export class Post extends BaseEntity {
   @ObjectIdColumn()
-  id: ObjectID;
+  _id: ObjectId;
 
   @Column({ length: 80 })
   title: string;
@@ -24,12 +23,12 @@ export class Post extends BaseEntity {
   @CreateDateColumn()
   createdAt: Date;
 
-  @CreateDateColumn()
+  @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column((type) => User)
-  user: string
+  @Column()
+  userId: ObjectId;
 
-  // @Column({ nullable: false })
-  // userId: number
+  @DeleteDateColumn({nullable: true})
+  deletedAt?: Date;
 }

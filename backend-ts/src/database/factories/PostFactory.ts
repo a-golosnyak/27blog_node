@@ -9,7 +9,7 @@ export default class PostFactory {
       const model = new Post();
       model.title = params.title ?? 'Title ' + faker.lorem.sentence();
       model.body = params.body ?? faker.lorem.paragraph();
-      model.user = params.user;
+      model.userId = params.userId;
       let result = await model.save();
       if (qty == 1) {
         return model;
