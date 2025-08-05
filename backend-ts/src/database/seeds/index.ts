@@ -77,7 +77,7 @@ import { AppDataSource } from "../../AppDataSource";
     // console.log(superadmin[0].email);
     // //------------------------------------------------------------
     const post = await PostFactory.create({
-      user: user[0].email
+      userId: user[0]._id
       // user: 'bbb@gmail.com'
     }, 5);
 

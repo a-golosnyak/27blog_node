@@ -11,13 +11,15 @@
       "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
       "fresh": "ts-node src/database/fresh.ts",
       "seed": "ts-node src/database/seeds",
-      "test": "NODE_ENV=testing jest --forceExit --detectOpenHandles  --silent"
+      "test": "NODE_ENV=test jest",
+      "test1": "NODE_ENV=testing jest --forceExit --detectOpenHandles  --silent"
    },
    "dependencies": {
       "bcryptjs": "2.4.3",
       "chai-http": "4.3.0",
       "cookie-parser": "1.4.4",
       "debug": "2.6.9",
+      "dotenv": "17.2.1",
       "express": "5.1.0",
       "jsonwebtoken": "9.0.2",
       "mongodb": "6.17.0",

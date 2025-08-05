@@ -3,10 +3,11 @@ import {
   BaseEntity,
   Column,
   CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
   Entity,
   ObjectIdColumn,
 } from "typeorm";
-import { User } from "./User";
 
 @Entity('posts')
 export class Post extends BaseEntity {
@@ -22,12 +23,12 @@ export class Post extends BaseEntity {
   @CreateDateColumn()
   createdAt: Date;
 
-  @CreateDateColumn()
+  @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column((type) => User)
-  user: string
+  @Column()
+  userId: ObjectId;
 
-  // @Column({ nullable: false })
-  // userId: number
+  @DeleteDateColumn({nullable: true})
+  deletedAt?: Date;
 }

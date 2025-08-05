@@ -23,7 +23,7 @@ export class AuthController {
         return res.status(400).send({ message: 'User allready exists'});
       }
 
-      const user = await userFactory.create({
+      const user: any = await userFactory.create({
         email: req.body.email,
         password: req.body.password,
         role: 'user'

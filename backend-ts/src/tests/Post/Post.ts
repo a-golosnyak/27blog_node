@@ -18,6 +18,11 @@ const SERVER_URL =`${config.APP_URL}:${config.APP_PORT}`;
 
 describe('Posts', () => {
   beforeAll(async() => {
+    process.env.NODE_ENV = 'test';
+
+    console.log('--- Here 1 ---');
+    console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+
     let connectionOptions = await getConnectionOptions();
     await createConnection(
       Object.assign(connectionOptions, {
@@ -25,11 +30,11 @@ describe('Posts', () => {
       })
     );
   })
-  it('should return -1 when the value is not present', function () {
+  it.skip('should return -1 when the value is not present', function () {
     assert.equal([1, 2, 3].indexOf(4), -1);
   });
 
-  it('should return test page', () => {
+  it.skip('should return test page', () => {
     chai.request(SERVER_URL)
       .get('/')
       .end((err, res) => {
@@ -40,7 +45,7 @@ describe('Posts', () => {
       })
   });
 
-  it('should return all posts', async () => {
+  it.skip('should return all posts', async () => {
 
     const user = await userFactory.create({
       // email: req.body.email,

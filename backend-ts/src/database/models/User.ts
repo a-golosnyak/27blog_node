@@ -3,7 +3,7 @@ import {
     ObjectIdColumn,
     Column,
     BaseEntity,
-    CreateDateColumn,
+    CreateDateColumn, DeleteDateColumn, UpdateDateColumn,
 } from "typeorm";
 import {Post} from "./Post";
 import {Role} from "./Role";
@@ -35,11 +35,14 @@ export class User extends BaseEntity{
     @CreateDateColumn()
     createdAt: Date;
 
-    @CreateDateColumn()
+    @UpdateDateColumn()
     updatedAt: Date;
 
     @Column((type) => Role)
     role: string
+
+    @DeleteDateColumn({nullable: true})
+    deletedAt?: Date;
 
     // @OneToMany (
     //   type => Post,
