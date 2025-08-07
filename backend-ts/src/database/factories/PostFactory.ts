@@ -2,7 +2,7 @@ import faker from "@faker-js/faker";
 import {Post} from "../models/Post";
 
 export default class PostFactory {
-  static async create(params: any , qty = 1) {
+  static async create(params: any , qty = 1): Promise<Post[]> {
     const models = [];
 
     for (let i = 0; i < qty; i++) {
@@ -12,7 +12,7 @@ export default class PostFactory {
       model.userId = params.userId;
       let result = await model.save();
       if (qty == 1) {
-        return model;
+        return [model];
       }
       models.push(result);
     }

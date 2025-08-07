@@ -1,9 +1,17 @@
-import {createConnection, DataSource} from "typeorm";
+import { DataSource } from "typeorm";
 import ormconfig from "../../ormconfig";
+import { MongoConnectionOptions } from "typeorm/driver/mongodb/MongoConnectionOptions";
+import config from "../config";
 
 (async () => {
   try {
-    const dataSource = new DataSource(ormconfig);
+    const dataSource = new DataSource({
+      ...ormconfig,
+      url: config.MONGO_CONNECTION_STRING,
+      host: config.MONGO_HOST,
+      port: config.MONGO_PORT as number
+    } as MongoConnectionOptions);
+
     await dataSource.initialize()
       .then(() => {
         console.log('Data Source has been initialized!');
@@ -11,16 +19,6 @@ import ormconfig from "../../ormconfig";
       .catch((err) => {
         console.error('Error during Data Source initialization', err);
       });
-
-    // console.log('Collections to delete');
-    // const entities = dataSource.connection.entityMetadatas;
-    // const entities = dataSource.getMetadata('api-design');
-    //
-    // for(const entity of entities) {
-    //   console.log("-------------------");
-    //   console.log(entity.tableName);
-    // }
-    // console.log("-------------------");
 
     await dataSource.synchronize(true);
     console.log('Deleted!');

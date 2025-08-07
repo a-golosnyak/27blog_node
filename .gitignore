@@ -1,6 +1,10 @@
 .env
+.env.test
 
 .idea
 .database
 .data
 data
+db
+
+docker-compose.yaml
