@@ -1,6 +1,4 @@
-import { DataSourceOptions } from "typeorm/data-source/DataSourceOptions";
-
-const ormconfig: DataSourceOptions = {
+const ormconfig = {
    type: "mongodb",
    database: "api-design",
    synchronize: true,
@@ -14,11 +12,11 @@ const ormconfig: DataSourceOptions = {
    subscribers: [
       "src/database/subscriber/*.ts"
    ],
-   // cli: {
-   //    "entitiesDir": "src/database/models",
-   //    "migrationsDir": "src/database/migration",
-   //    "subscribersDir": "src/database/subscriber"
-   // }
+   cli: {
+      "entitiesDir": "src/database/models",
+      "migrationsDir": "src/database/migration",
+      "subscribersDir": "src/database/subscriber"
+   }
 };
 
 export default ormconfig

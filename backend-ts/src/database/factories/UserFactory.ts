@@ -1,6 +1,5 @@
 import { User } from '../models/User';
 import faker from 'faker';
-import {AuthService} from "../../services/AuthService";
 
 export default class UserFactory {
   static async create(params: any , qty = 1) {
@@ -8,6 +7,9 @@ export default class UserFactory {
 
     for (let i = 0; i < qty; i++) {
       const user = new User();
+      if(params._id) {
+        user._id = params._id;
+      }
       user.firstName = params?.firstName ?? faker.name.firstName();
       user.lastName = params?.lastName ?? faker.name.lastName();
       user.age = params?.age ?? faker.datatype.number({min: 10, max: 60});

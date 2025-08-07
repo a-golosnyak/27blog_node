@@ -1,19 +1,19 @@
 version: "3.9"
 services:
   mongo:
-    container_name: mongo
+    container_name: mongo-test
     image: mongo
 #    env_file:
 #      - ./backend/.env
     ports:
-      - "27017:27017"
+      - "27019:27017" # Host_Port:Container_Port
   #        =============================
   #    volumes:
   #      - ./data:/data/db
   #    volumes:
   #      - mongodata:/data/db
 #    command: --quiet
-    command: mongod --quiet --logpath /dev/null
+    command: mongod --quiet --logpath /dev/null --port 27017
   #    restart: unless-stopped
   #  volumes:
   #    mongodata:

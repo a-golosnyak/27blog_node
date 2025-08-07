@@ -7,7 +7,7 @@ export const AppDataSource = new DataSource({
   ...ormconfig,
   url: config.MONGO_CONNECTION_STRING,
   host: config.MONGO_HOST,
-  port: config.MONGO_PORT
+  port: config.MONGO_PORT as number
 } as MongoConnectionOptions);
 
 // export const AppDataSource = new DataSource(ormconfig);

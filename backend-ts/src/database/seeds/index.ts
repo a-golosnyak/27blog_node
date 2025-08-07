@@ -1,18 +1,17 @@
 import roleFactory from '../factories/roleFactory'
 import userFactory from '../factories/userFactory'
 import PostFactory from "../factories/PostFactory";
-import ormconfig from "../../../ormconfig.js"
 import { AppDataSource } from "../../AppDataSource";
+import config from "../../config";
+import { ObjectId } from "mongodb";
+import { Post } from "../models/Post";
 
 (async () => {
   console.log('Common Seeder -------------------');
-  console.log(ormconfig.host);
-  console.log(ormconfig.port);
-  console.log(ormconfig.url);
-  // console.log(ormconfig.process.env.MONGO_HOST);
-  // console.log(ormconfig.process.env.MONGO_PORT);
+  console.log('config.MONGO_HOST', config.MONGO_HOST);
+  console.log('config.MONGO_PORT', config.MONGO_PORT);
+  console.log('config.MONGO_URL', config.MONGO_CONNECTION_STRING);
 
-  // try {
 // console.log('Here common seeder! -------')
 // console.log(faker.commerce.product())
 // console.log(faker.commerce.product())
@@ -26,22 +25,6 @@ import { AppDataSource } from "../../AppDataSource";
 // console.log(faker.random.word())
 
   try {
-    // let connectionOptions = await DataSourceOptions();
-    //
-    // await createConnection(
-    //   Object.assign(connectionOptions, {
-    //     url: process.env.MONGO_CONNECTION_STRING
-    //   })
-    // );
-
-    // const myDataSource = new DataSource(ormconfig)
-    // await myDataSource.connect();
-
-    // const appDataSource = new DataSource(ormconfig);
-    // await appDataSource.initialize();
-    // await appDataSource.connect();
-
-    // const dataSource = new DataSource(ormconfig);
     await AppDataSource.initialize()
       .then(() => {
         console.log('Data Source has been initialized!');
@@ -57,34 +40,34 @@ import { AppDataSource } from "../../AppDataSource";
     console.log(superadmin[0].name, ' ', admin[0].name, ' ', user[0].name);
     // // ------------------------------------------------------------
     superadmin = await userFactory.create({
+      _id: new ObjectId('111111111111111111111111'),
       email: 'andreygoldpua@gmail.com',
       password: '111',
       role: 'superadmin'
     }, 1);
 
     admin = await userFactory.create({
+      _id: new ObjectId('222222222222222222222222'),
       email: 'aaa@gmail.com',
       password: '111',
       role: 'admin'
     }, 1);
 
     user = await userFactory.create({
+      _id: new ObjectId('333333333333333333333333'),
       email: 'bbb@gmail.com',
       password: '111',
       role: 'user'
     }, 1);
     console.log(superadmin[0].email, ' ', admin[0].email, ' ', user[0].email);
-    // console.log(superadmin[0].email);
     // //------------------------------------------------------------
-    const post = await PostFactory.create({
+    const posts = await PostFactory.create({
       userId: user[0]._id
-      // user: 'bbb@gmail.com'
     }, 5);
 
-    console.log(post);
-    // console.log(posts.map(item => item.title));
+    // console.log(post);
+    console.log(posts.map((item: Post) => item.title));
 
-    //------------------------------------------------------------
     //------------------------------------------------------------
 
     console.log('Entities created ----------------');
