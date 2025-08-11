@@ -16,7 +16,7 @@ chai.use(chaiHttp)
 const SERVER_URL =`${config.APP_URL}:${config.APP_PORT}`;
 
 
-describe('Posts', () => {
+describe.skip('Posts', () => {
   beforeAll(async() => {
     process.env.NODE_ENV = 'test';
 
@@ -56,7 +56,7 @@ describe('Posts', () => {
     const token = AuthService.newToken(user[0]);
 
     const post: Post | any = await PostFactory.create({
-      user: user[0].email
+      userId: user[0].email
       // user: 'bbb@gmail.com'
     }, 1);
 

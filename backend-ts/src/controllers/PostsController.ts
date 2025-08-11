@@ -7,7 +7,7 @@ class PostsController {
   static async index(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const docs = await Post.find();
-      console.log('--- Here PostsController.index ------');
+      // console.log('--- Here PostsController.index ------');
 
       res.status(200).send({data: docs});
     } catch (err) {
@@ -30,7 +30,7 @@ class PostsController {
   }
 
   static async create(req: Request, res: Response, next: NextFunction) {
-    console.log('----- PostsController.create -------------------');
+    // console.log('----- PostsController.create -------------------');
 
     try {
       const post: Post = Post.create({
@@ -48,7 +48,7 @@ class PostsController {
 
   static async update(req: Request, res: Response, next: NextFunction) {
     // try {
-      console.log('----- PostsController.update -------------------');
+    //   console.log('----- PostsController.update --------------------');
       let updatedPost: Post = await Post.findOne({ where: { _id: new ObjectId(req.params.id) } });
 
       if (!updatedPost) {
@@ -66,7 +66,7 @@ class PostsController {
 
   static async destroy(req: Request, res: Response, next: NextFunction) {
     try {
-      console.log('----- PostsController.destroy -------------------');
+      // console.log('----- PostsController.destroy -------------------');
       let postToDelete: Post = await Post.findOne({ where: { _id: new ObjectId(req.params.id) } });
 
       if (!postToDelete) {

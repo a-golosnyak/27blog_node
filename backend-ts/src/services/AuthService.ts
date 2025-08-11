@@ -1,13 +1,12 @@
 import jwt from 'jsonwebtoken'
 import config from '../config'
-import {getMongoManager} from "typeorm";
 import { User } from "../database/models/User";
 import bcrypt from 'bcryptjs'
 import { ObjectId } from 'mongodb'
 import {AppError} from "../utils/AppError";
 
 export class AuthService {
-  static newToken = (user: User) => {
+  static newToken = (user: User): string => {
     // @ts-ignore
     return jwt.sign(
       { id: user._id },
