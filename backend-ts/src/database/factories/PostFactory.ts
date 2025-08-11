@@ -1,21 +1,19 @@
 import faker from "@faker-js/faker";
+import { ObjectId } from "mongodb";
 import {Post} from "../models/Post";
 
 export default class PostFactory {
-  static async create(params: any , qty = 1): Promise<Post[]> {
-    const models = [];
+  static async create(params: Partial<Post> = {} , qty = 1): Promise<Post[]> {
+    const posts: Post[] = [];
 
     for (let i = 0; i < qty; i++) {
-      const model = new Post();
-      model.title = params.title ?? 'Title ' + faker.lorem.sentence();
-      model.body = params.body ?? faker.lorem.paragraph();
-      model.userId = params.userId;
-      let result = await model.save();
-      if (qty == 1) {
-        return [model];
-      }
-      models.push(result);
+      const post = new Post();
+      post.title = params.title ?? 'Title ' + faker.lorem.sentence();
+      post.body = params.body ?? faker.lorem.paragraph();
+      post.userId = params.userId ?? new ObjectId();
+      let saved = await post.save();
+      posts.push(saved);
     }
-    return models;
+    return posts;
   }
 }

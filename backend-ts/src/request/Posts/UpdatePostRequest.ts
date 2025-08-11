@@ -4,8 +4,6 @@ import Post from "../../rules/Post";
 
 export class UpdatePostRequest {
   static async validate(req: Request, res: Response, next: NextFunction) {
-    console.log('----- Middleware UpdatePostRequest.validate -----------------');
-
     let validation = new Validator(req.body, UpdatePostRequest.rules(), Post.messages());
 
     if(validation.passes()) {

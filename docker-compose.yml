@@ -19,6 +19,12 @@ services:
   #    mongodata:
   #      container_name: mongo_db
   #        image: mongo
+  mongo-test:
+    container_name: mongo-test
+    image: mongo
+    ports:
+      - "27019:27017" # Host_Port:Container_Port
+    command: mongod --quiet --logpath /dev/null --port 27017
 
 #  backend:
 #    container_name: backend

@@ -2,7 +2,7 @@ import { User } from '../models/User';
 import faker from 'faker';
 
 export default class UserFactory {
-  static async create(params: any , qty = 1) {
+  static async create(params: any , qty = 1): Promise<User[]> {
     const users = [];
 
     for (let i = 0; i < qty; i++) {
