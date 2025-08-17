@@ -7,7 +7,7 @@
       "target": "es6",
       "module": "commonjs",
       "moduleResolution": "node",
-      "baseUrl": "src",
+      "baseUrl": "./src",
       "rootDir": "src",
       "outDir": "./build",
       "emitDecoratorMetadata": true,
@@ -18,7 +18,10 @@
       "noUnusedParameters": false,
       "resolveJsonModule": true,
       "isolatedModules": true,
-      "allowSyntheticDefaultImports": true
+      "allowSyntheticDefaultImports": true,
+      "paths": {
+         "*": ["*"]
+      }
    },
    "include": ["src"]
 }

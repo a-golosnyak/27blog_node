@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import Validator from 'validatorjs';
 import Post from "../../rules/Post";
+import { AppError } from "../../utils/AppError";
 
 export class UpdatePostRequest {
   static async validate(req: Request, res: Response, next: NextFunction) {
@@ -9,7 +10,7 @@ export class UpdatePostRequest {
     if(validation.passes()) {
       next();
     } else
-      res.status(422).send(validation.errors)
+      throw new AppError(validation.errors, 422);
   }
 
   static rules(){

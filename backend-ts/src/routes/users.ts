@@ -1,23 +1,24 @@
 import * as express from "express";
 import PostsController from "../controllers/PostsController";
-import {CreatePostRequest} from "../request/Posts/CreatePostRequest";
-import {UpdatePostRequest} from "../request/Posts/UpdatePostRequest";
-const router = express.Router();
+import { CreatePostRequest } from "../request/Posts/CreatePostRequest";
+import { UpdatePostRequest } from "../request/Posts/UpdatePostRequest";
 
-router
+const usersRouter = express.Router();
+
+usersRouter
   .route('/')
   .get(PostsController.index)
   .post(CreatePostRequest.validate, PostsController.create)
 
 // /api/post/:id
-router
+usersRouter
   .route('/:id')
   .get(PostsController.show)
   .put(UpdatePostRequest.validate, PostsController.update)
   .delete(PostsController.destroy)
 
-router.get('/', function(req, res, next) {
+usersRouter.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-export default router;
+export default usersRouter;
