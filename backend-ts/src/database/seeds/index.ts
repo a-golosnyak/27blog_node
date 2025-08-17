@@ -5,6 +5,8 @@ import { AppDataSource } from "../../AppDataSource";
 import config from "../../config";
 import { ObjectId } from "mongodb";
 import { Post } from "../models/Post";
+import CommentFactory from "../factories/CommentFactory";
+import { Comment } from '../models/Comment';
 
 (async () => {
   console.log('Common Seeder -------------------');
@@ -26,56 +28,60 @@ import { Post } from "../models/Post";
 
   try {
     await AppDataSource.initialize()
-      .then(() => {
-        console.log('Data Source has been initialized!');
-      })
-      .catch((err) => {
-        console.error('Error during Data Source initialization', err);
-      });
-
     //------------------------------------------------------------
     let superadmin = await roleFactory.create({name: 'superadmin' });
     let admin = await roleFactory.create({name: 'admin' });
     let user = await roleFactory.create({name: 'user' });
     console.log(superadmin[0].name, ' ', admin[0].name, ' ', user[0].name);
-    // // ------------------------------------------------------------
+    // ------------------------------------------------------------
     superadmin = await userFactory.create({
-      _id: new ObjectId('111111111111111111111111'),
+      _id: new ObjectId('1a1111111111111111111111'),
       email: 'andreygoldpua@gmail.com',
       password: '111',
       role: 'superadmin'
     }, 1);
 
     admin = await userFactory.create({
-      _id: new ObjectId('222222222222222222222222'),
+      _id: new ObjectId('2a1111111111111111111111'),
       email: 'aaa@gmail.com',
       password: '111',
       role: 'admin'
     }, 1);
 
     user = await userFactory.create({
-      _id: new ObjectId('333333333333333333333333'),
+      _id: new ObjectId('3a1111111111111111111111'),
       email: 'bbb@gmail.com',
       password: '111',
       role: 'user'
     }, 1);
     console.log(superadmin[0].email, ' ', admin[0].email, ' ', user[0].email);
-    // //------------------------------------------------------------
-    const posts = await PostFactory.create({
-      userId: user[0]._id
-    }, 5);
+    //------------------------------------------------------------
 
-    // console.log(post);
+    let posts: Post[] = [];
+    for(let i=1; i < 6; i++) {
+      const post = await PostFactory.create({
+        _id: new ObjectId(`${i}`+'a2222222222222222222222'),
+        userId: user[0]._id
+      });
+      posts.push(post[0]);
+    }
     console.log(posts.map((item: Post) => item.title));
 
     //------------------------------------------------------------
+    let comments: Comment[] = [];
+    for(let i=1; i < 4; i++) {
+      const comment = await CommentFactory.create({
+        _id: new ObjectId(`${i}`+'a3333333333333333333333'),
+        userId: user[0]._id,
+        postId: posts[0]._id,
+      });
+      comments.push(comment[0]);
+    }
+
+    console.log(comments.map((item: Comment) => item.body));
+    //------------------------------------------------------------
 
     console.log('Entities created ----------------');
-
-    //------------------------------------------------------------
-    // const posts_ = await getMongoManager().find(Post);
-    // console.log(posts_);
-    //------------------------------------------------------------
 
     process.exit();
   } catch (e) {

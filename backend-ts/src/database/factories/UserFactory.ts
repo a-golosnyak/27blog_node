@@ -1,5 +1,5 @@
 import { User } from '../models/User';
-import faker from 'faker';
+import faker from '@faker-js/faker';
 
 export default class UserFactory {
   static async create(params: any , qty = 1): Promise<User[]> {
@@ -15,7 +15,6 @@ export default class UserFactory {
       user.age = params?.age ?? faker.datatype.number({min: 10, max: 60});
       user.email = params?.email ?? faker.internet.email(user.firstName, user.lastName);
       user.role = params?.role ?? 'user'
-      // user.password = AuthService.hashPassword(params?.password ?? '111');
       user.password = user.hashPassword(params?.password ?? '111');
       let result = await user.save();
       users.push(result);

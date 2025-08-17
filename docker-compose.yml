@@ -3,22 +3,13 @@ services:
   mongo:
     container_name: mongo
     image: mongo
-#    env_file:
-#      - ./backend/.env
     ports:
       - "27018:27017" # Host_Port:Container_Port
-  #        =============================
   #    volumes:
   #      - ./data:/data/db
-  #    volumes:
-  #      - mongodata:/data/db
 #    command: --quiet
     command: mongod --quiet --logpath /dev/null --port 27017
-  #    restart: unless-stopped
-  #  volumes:
-  #    mongodata:
-  #      container_name: mongo_db
-  #        image: mongo
+
   mongo-test:
     container_name: mongo-test
     image: mongo
@@ -43,18 +34,16 @@ services:
 #    depends_on:
 #      - mongo
 #    restart: always
+
   backend-ts:
     container_name: backend-ts
     build:
       context: "./backend-ts"
-      dockerfile: "Dockerfile"
+      target: develop
     ports:
       - "3000:3000"
     volumes:
       - ./backend-ts/src:/home/backend-ts/src
-#      - ./backend-ts/database:/home/backend-ts/database
-    env_file:
-      - ./backend/.env
     environment:
       NODE_ENV: '${NODE_ENV}'
       APP_URL: '${APP_URL}'

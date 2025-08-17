@@ -1,5 +1,5 @@
 import { Role } from '../models/Role';
-import faker from 'faker';
+import faker from '@faker-js/faker';
 
 export default class RoleFactory {
   static async create(params: any , qty = 1) {
@@ -7,7 +7,7 @@ export default class RoleFactory {
 
     for (let i = 0; i < qty; i++) {
       const model = new Role();
-      model.name = params?.name ?? faker.datatype.word;
+      model.name = params?.name ?? faker.word;
       let result = await model.save();
       models.push(result);
     }
