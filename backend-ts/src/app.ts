@@ -9,10 +9,13 @@ import { morganMiddleware } from "./utils/logger";
 import usersRouter from "./routes/users";
 import postsRouter from "./routes/posts";
 import commentsRouter from "./routes/comments";
+import cors from "cors";
+import { requireAuth } from "./middleware/auth";
+import router from "./routes";
 
 export const app = express();
 
-// app.use(cors())
+app.use(cors())
 app.use(morganMiddleware)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,8 +31,9 @@ app.post('/login', RegisterRequest.validate, AuthController.login);
 //   next()
 // })
 
-// app.use('/', AuthService.protect);
+app.use('/',  AuthService.protect);
 
+app.get('/me',            AuthController.me);
 app.use('/api/users',     usersRouter);
 app.use('/api/posts',     postsRouter);
 app.use('/api/comments',  commentsRouter);

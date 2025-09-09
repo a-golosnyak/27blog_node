@@ -11,7 +11,7 @@ export default class CommentFactory {
       if(params._id) {
         comment._id = params._id;
       }
-      comment.body = params.body ?? faker.lorem.sentence();
+      comment.content = params.content ?? faker.lorem.sentence();
       comment.userId = params.userId ?? new ObjectId();
       comment.postId = params.postId ?? new ObjectId();
       const saved = await comment.save();

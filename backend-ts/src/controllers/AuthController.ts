@@ -1,69 +1,72 @@
 import { User } from "../database/models/User";
 import userFactory from "../database/factories/UserFactory";
 import { AuthService } from "../services/AuthService";
-import { AppDataSource } from "../AppDataSource";
+import { Request, Response } from "express";
+import { AppError } from "../utils/AppError";
+import { AuthRequest } from "../middleware/types/AuthRequestInterface";
 
 export class AuthController {
-  static appDataSource = AppDataSource;
-
-  static async register(req, res) {
+  static async register(req: Request, res: Response) {
     if (!req.body.email || !req.body.password) {
-      return res.status(400).send({ message: 'need email and password' })
+      throw new AppError('Need email and password', 400);
     }
 
-    try {
-      console.log('----- AuthController.register -------------------');
-      console.log(req.body);
+    console.log('----- AuthController.register -------------------');
 
-      // const userExists = await this.appDataSource.manager.findOne(User, {where: {email: req.body.email}});
-      const userExists = await User.findOne({where: {email: req.body.email}});
-      console.log('----- userExists ', userExists);
+    const userExists = await User.findOne({ where: { email: req.body.email } });
+    console.log('----- userExists ', userExists);
 
-      if (userExists) {
-        return res.status(400).send({ message: 'User allready exists'});
-      }
-
-      const user: any = await userFactory.create({
-        email: req.body.email,
-        password: req.body.password,
-        role: 'user'
-      }, 1);
-
-      const token = AuthService.newToken(user);
-      return res.status(201).send({ token })
-    } catch (e) {
-      return res.status(500).end()
+    if (userExists) {
+      throw new AppError('User allready exists', 400);
     }
+
+    let user: any = await userFactory.create({
+      email: req.body.email,
+      password: req.body.password,
+      role: 'user'
+    }, 1);
+
+    user = user[0];
+
+    console.log('----- Here 3 user ', user);
+
+    const token = AuthService.newToken(user);
+    const { password, ...userWithoutPassword } = user;
+
+    return res.status(201).send({ token, user: userWithoutPassword })
   }
 
-  static async login(req, res) {
+  static async login(req: Request, res: Response): Promise<Response> {
     console.log('----- AuthController.login ------------------');
 
     if (!req.body.email || !req.body.password) {
-      return res.status(400).send({ message: 'need email and password' })
+      throw new AppError('Need email and password', 400);
     }
 
-    const invalid = { message: 'Invalid email and passoword combination' }
+    const invalid = 'Invalid email and passoword combination'
+    const user = await User.findOne({where: {email: req.body.email}});
 
-    try {
-      const user = await User.findOne({where: {email: req.body.email}});
-
-      console.log('----- user ', user);
-
-      if (!user) {
-        return res.status(401).send(invalid)
-      }
-      const match = await user.checkPassword(req.body.password)
-
-      if (!match) {
-        return res.status(401).send(invalid)
-      }
-
-      const token = AuthService.newToken(user)
-      return res.status(201).send({ token })
-    } catch (e) {
-      console.error(e)
-      res.status(500).end()
+    if (!user) {
+      throw new AppError(invalid, 401);
     }
+    const match = await user.checkPassword(req.body.password)
+
+    if (!match) {
+      throw new AppError(invalid, 401);
+    }
+    const token = AuthService.newToken(user)
+    const { password, ...userWithoutPassword } = user;
+
+    return res.status(201).send({ token, user: userWithoutPassword })
+  }
+
+  static async me(req: AuthRequest , res: Response) {
+    console.log('----- AuthController.me ------------------');
+    if (!req.user) throw new AppError('Unauthorized', 401);
+
+    // @ts-ignore
+    const { password, ...userWithoutPassword } = req.user;
+
+    res.status(200).json({ user: userWithoutPassword });
   }
 }

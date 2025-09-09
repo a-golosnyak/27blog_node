@@ -78,7 +78,7 @@ import { Comment } from '../models/Comment';
       comments.push(comment[0]);
     }
 
-    console.log(comments.map((item: Comment) => item.body));
+    console.log(comments.map((item: Comment) => item.content));
     //------------------------------------------------------------
 
     console.log('Entities created ----------------');

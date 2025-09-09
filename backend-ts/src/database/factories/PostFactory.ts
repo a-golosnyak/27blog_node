@@ -12,7 +12,7 @@ export default class PostFactory {
         post._id = params._id;
       }
       post.title = params.title ?? 'Title ' + faker.lorem.sentence();
-      post.body = params.body ?? faker.lorem.paragraph();
+      post.body = params.body ?? faker.lorem.paragraph(10);
       post.userId = params.userId ?? new ObjectId();
       let saved = await post.save();
       posts.push(saved);

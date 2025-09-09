@@ -8,6 +8,7 @@ import {
   Entity,
   ObjectIdColumn,
 } from "typeorm";
+import {UserType} from "./types";
 
 @Entity('posts')
 export class Post extends BaseEntity {
@@ -31,4 +32,8 @@ export class Post extends BaseEntity {
 
   @DeleteDateColumn({nullable: true})
   deletedAt?: Date;
+
+  public isAuthor(userId: ObjectId): boolean {
+    return this.userId.toString() === userId.toString();
+  }
 }
