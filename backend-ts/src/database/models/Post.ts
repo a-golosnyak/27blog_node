@@ -31,4 +31,8 @@ export class Post extends BaseEntity {
 
   @DeleteDateColumn({nullable: true})
   deletedAt?: Date;
+
+  public isAuthor(userId: ObjectId): boolean {
+    return this.userId.toString() === userId.toString();
+  }
 }

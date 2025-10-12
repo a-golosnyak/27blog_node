@@ -3,7 +3,10 @@ import config from '../config'
 import { User } from "../database/models/User";
 import bcrypt from 'bcryptjs'
 import { ObjectId } from 'mongodb'
-import {AppError} from "../utils/AppError";
+import { AppError } from "../utils/AppError";
+import { NextFunction, Response } from "express";
+import * as console from "node:console";
+import { AuthRequest } from "../middleware/types/AuthRequestInterface";
 
 export class AuthService {
   static newToken = (user: User): string => {
@@ -17,7 +20,6 @@ export class AuthService {
 
   static verifyToken = (token: string) => {
     console.log("--- Here verifyToken -----------");
-    console.log(token)
 
     return new Promise((resolve, reject) => {
       jwt.verify(token, config.secrets.jwt, (err, payload) => {
@@ -38,7 +40,7 @@ export class AuthService {
     })
   }
 
-  static protect = async (req, res, next) => {
+  static protect = async (req: AuthRequest, res: Response, next: NextFunction) => {
     const bearer = req.headers.authorization
 
     if (!bearer || !bearer.startsWith('Bearer ')) {
@@ -53,12 +55,11 @@ export class AuthService {
       throw new AppError('', 401);
     }
 
-    const user = await User.findOne({ where: { _id: new ObjectId(payload.id) }});
+    const user = await User.findOne({ where: { _id: ObjectId.createFromHexString(payload.id) }});
 
     if (!user) {
       throw new AppError('', 401);
     }
-
     req.user = user
     next()
   }

@@ -15,7 +15,7 @@ export class Comment extends BaseEntity {
   _id: ObjectId;
 
   @Column( {length: 200 })
-  body: string;
+  content: string;
 
   @Column()
   userId: ObjectId;
@@ -31,4 +31,8 @@ export class Comment extends BaseEntity {
 
   @DeleteDateColumn({nullable: true})
   deletedAt?: Date;
+
+  public isAuthor(userId: ObjectId): boolean {
+    return this.userId.toString() === userId.toString();
+  }
 }

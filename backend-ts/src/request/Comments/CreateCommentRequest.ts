@@ -16,9 +16,9 @@ export class CreateCommentRequest {
 
   static rules(): Record<string, string> {
     return {
-      body:   'required|string',
-      userId: 'required|string',
-      postId: 'required|string',
+      content:  'required|string',
+      userId:   'required|string',
+      postId:   'required|string',
     }
   }
 }

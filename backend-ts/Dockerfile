@@ -1,4 +1,4 @@
-FROM  node:18-slim as base
+FROM  node:22-slim as base
 RUN npm i -g nodemon
 
 RUN mkdir /home/backend-ts

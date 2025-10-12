@@ -16,9 +16,9 @@ export class UpdateCommentRequest {
 
   static rules(){
     return {
-      body:   'string',
-      userId: 'string',
-      postId: 'string',
+      content:  'string',
+      userId:   'string',
+      postId:   'string',
     }
   }
 }
