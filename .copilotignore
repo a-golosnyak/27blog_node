@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+services/*/node_modules/
+
+# Build outputs
+dist/
+build/
+services/*/dist/
+services/*/build/
+
+# Logs
+*.log
+logs/
+services/*/logs/
+
+# Environment files
+.env*
+services/*/.env*
+
+# Database files
+*.db
+
+# Cache files
+.cache/
+services/*/.cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Large data files
+*.csv
+data/
+datasets/
+
+# Sensitive files
+secrets/
+credentials/
+private/
+
+# Project specific
+commands/
+dump-*/
+
+# Service-specific outputs
+services/*/coverage/
+services/*/tmp/
+services/*/*.tgz

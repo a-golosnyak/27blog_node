@@ -8,7 +8,6 @@ import {
   Entity,
   ObjectIdColumn,
 } from "typeorm";
-import {UserType} from "./types";
 
 @Entity('posts')
 export class Post extends BaseEntity {

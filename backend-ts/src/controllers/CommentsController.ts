@@ -63,3 +63,31 @@ class CommentsController {
 }
 
 export default CommentsController
+
+
+if (subscriptions == null) return { statusCode: 422, reason: 'subscriptions is required param' };
+if (typeof subscriptions !== 'object' || Array.isArray(subscriptions)) {
+  return { statusCode: 422, reason: 'subscriptions must be an object of shape { [program: string]: string[] }' };
+}
+const programKeys = Object.keys(subscriptions);
+if (programKeys.length === 0) {
+  return { statusCode: 422, reason: 'subscriptions cannot be empty' };
+}
+
+// Validate each key/value pair
+for (const program of programKeys) {
+  if (typeof program !== 'string' || program.trim() === '') {
+    return { statusCode: 422, reason: 'subscriptions contains an invalid (empty) program key' };
+  }
+  const mids = subscriptions[program];
+  if (!Array.isArray(mids)) {
+    return { statusCode: 422, reason: `value for program ${program} must be an array of strings` };
+  }
+  if (mids.length === 0) {
+    return { statusCode: 422, reason: `program ${program} must have at least one MID` };
+  }
+  for (const mid of mids) {
+    if (typeof mid !== 'string' || mid.trim() === '') {
+      return { statusCode: 422, reason: `program ${program} has invalid MID (must be non-empty string)` };
+    }
+  }

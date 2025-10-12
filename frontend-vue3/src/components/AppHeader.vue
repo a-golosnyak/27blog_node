@@ -2,7 +2,7 @@
   <header class="app-header">
     <div class="header-content">
       <div class="logo" @click="goHome">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
           <rect x="4" y="8" width="24" height="16" rx="3" fill="#BDBDBD"/>
           <rect x="8" y="12" width="16" height="8" rx="2" fill="#757575"/>
           <circle cx="10" cy="16" r="1.5" fill="#E0E0E0"/>
@@ -87,7 +87,7 @@ const logout = async () => {
   border-radius: 4px;
   transition: background 0.2s;
 }
-.nav-links a.active,
+.nav-links,
 .nav-links a:hover {
   background: #616161;
 }
